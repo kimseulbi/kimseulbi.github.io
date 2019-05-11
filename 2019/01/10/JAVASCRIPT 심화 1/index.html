@@ -1,10 +1,250 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="SEULBI KIM,ksb5166@gmail.com"><title>JAVASCRIPT 값 더 알아보기 · RAI TIL</title><meta name="description" content="값 더 알아보기const와 let의 차이
-let은 재대입 가능, const는 재대입 불가
-const는 선언과 대입을 동시
 
-const와 let의 공통점
-let과 const 둘 다 같은 이름을 갖는 변수의 재선언을 허용하지 않음
-변수가 선언되기 전에 참조하여고 하면 에러"><meta name="keywords" content="Hexo,블로그, blog, seulbi, @seulbikim, javascript, web, developer, node.js, HTML, CSS, SCSS, frontend"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">RAI TIL</a></h3><div class="description"><p>시옷스 스터디에서 학습한 내용 정리, 개발하면서 삽질한 것 정리</p></div></div></div><ul class="social-links"><li><a href="http://github.com/kimseulbi"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li></li><li><a href="/archives">归档</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>JAVASCRIPT 값 더 알아보기</a></h3></div><div class="post-content"><h2 id="값-더-알아보기"><a href="#값-더-알아보기" class="headerlink" title="값 더 알아보기"></a>값 더 알아보기</h2><h3 id="const와-let의-차이"><a href="#const와-let의-차이" class="headerlink" title="const와 let의 차이"></a>const와 let의 차이</h3><ol>
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="RAI TIL">
+    <title>JAVASCRIPT 값 더 알아보기 - RAI TIL</title>
+    <meta name="author" content="RAI KIM">
+    
+        <meta name="keywords" content="블로그, blog, seulbi, @seulbikim, javascript, web, developer, node.js, HTML, CSS, SCSS, frontend,">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"RAI KIM","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"값 더 알아보기const와 let의 차이\nlet은 재대입 가능, const는 재대입 불가\nconst는 선언과 대입을 동시\n\nconst와 let의 공통점\nlet과 const 둘 다 같은 이름을 갖는 변수의 재선언을 허용하지 않음\n변수가 선언되기 전에 참조하여고 하면 에러\n블록 스코프를 갖음\n\nvar와 let,const의 차이\nvar는 재선언 가능\nlet, const는 블록 스코프, var는 함수 스코프\n\n\n\n\n\nconst\nlet\nvar\n\n\n\n\n스코프\n블록 스코프\n블록 스코프\n함수 스코프\n\n\n재대입\nX\nO\nO\n\n\n재선언\nX\nX\nO\n\n\n호이스팅\nX\nX\nO\n\n\n사용 권장\n1순위\n2순위\n3순위\n\n\n\n전역변수(글로벌 변수)를 사용하면 안되는 이유\n라이브러리를 사용, 큰 프로젝트 소스를 나누어서 관리할때 충돌이 일어날수 있습니다.\n서버의 중요한 데이터나 공개하고 싶지 않은 데이터를 처리할때(해캥이나 보안적 측면)\n브라우저에는 기본적으로 자바스크립트 콘솔이나 디버깅 둘이 내장되어 있으므로 이를 이용하면 소스는 기본이고, 자바스크립트 변수값들도 쉽게 알아낼수 있습니다.\n\n\n메모리 관리 측면에서 좋지 않습니다.\n\n예방방법\n클로저 이용\n모듈화\n엄격모드이용 (엄격모드- 엄격하게 문법을 검사하겠다. 전역변수 사용 못하게 함)\n\n\n\n\n\n12345678910111213141516171819202122232425// 글로벌 변수 선언 예시 1let globalVar = \"aaa\";// 글로벌 변수 선언 예시 2// i와 globalVar3 둘 다 글로벌 변수// var는 함수 스코프이기 때문for (var i = 0; i &lt; 10; i++) &#123;  var globalVar3 = \"bbb\";&#125;// 글로벌 변수 선언 예시 3function testFuc() &#123;  globalVar4 = \"ccc\";  for (j = 0; j &lt; 10; j++) &#123;    // ...  &#125;&#125;testFuc();console.log(globalVar); // aaaconsole.log(i); //10console.log(globalVar3); //bbbconsole.log(globalVar4); //cccconsole.log(j); //10\n전역객체 Window\nJavaScipt 구동 환경은 모두 전역 객체라는 특별한 객체를 갖고 있습니다. 전역 변수가 선언되면, 이 변수는 또한 전역 객체의 속성이 되어 전역 객체를 통해서 접근할 수 있다.\n\n전역 객체의 이름은 javaScipt 구동 환경마다 다릅니다.\n\n\n\n구동환경\n전역 객체 이름\n\n\n\n\n웹 브라우저\nwindow\n\n\n웹 워커\nself\n\n\nNode.js\nglobal\n\n\n\nscope\n변수는 코드의 일정 범위 안에서 유효하다는 성질을 가지고 있는데 이러한 특정 변수가 유효한 코드상의 유효 범위를 가지고 스코프라고 합니다.\n\n\n현재 접근할 수 있는 변수들의 범위\n현재 위치에서 볼 수 있는 변수들의 범위\n\n변수가 스코프 안에 선언되었으면 해당 스코프 안에서 변수에 접근하여 일고 쓸수 있습니다. 하지만 스코프 밖에서는 해당 변수에 접근할 수 없습니다.\n1234따로 알아볼것* scope가 조금 다른 catch* catch와 with의 예외 - catch와 with의 경우 인자로 포함되는 error/inScope등의 변수들은 scope 안에서만 사용가능하나 그 내부에 선언한 변수들은 global scope를 따른다.\n함수scope와 블록scope함수scope는 함수 단위로 범위를 지정하며 var가 가지고 있는 스코프입니다.블록scope는 중괄호{} 단위로 범위를 지정하며 let,const가 가지고 있는 스코프입니다.\n1234567891011121314151617// 함수scopefunction scopeTest() &#123;  var is = true;  if (is) &#123;    var is = false;  &#125;  for (var i = 0; i &lt;= 5; i++) &#123;    var inFor = i;  &#125;  console.log(inFor);  console.log(is);&#125;scopeTest();\n1234567891011121314151617// 블록scopefunction scopeTest() &#123;  let is = true;  if (is) &#123;    let is = false;  &#125;  for (let i = 0; i &lt;= 5; i++) &#123;    let inFor = i;  &#125;  console.log(is);  console.log(inFor);&#125;scopeTest();\n스코프 체인식별자를 찾는 일련의 과정 변수가 스코프 안에 선언되지 않았다면, 그 변수를 찾기 위해 부모 스코프로 올라가고, 거기에도 없다면 또 부모 스코프에 올라가서 찾습니다.\n호이스팅var 변수의 선언부를 제일 위로 끌어올린다. 선언부만! let, const 변수는 호이스팅 기능이 없다.\n\n함수가 함수 선언식으로 선언되면, 현대 스코프의 최상단으로 호이스팅 됩니다.\n함수 또는 var로 선언된 변수\nvar는 함수 스코프이기 떄문에 함수 내부에서 맨 상단으로 끌어올려짐.\n반면 함수가 함수 표현식으로 선언되면, 함수는 현재 스코프의 최상단으로 호이스팅되지 않습니다.\n\n네스팅된 스코프에서 렉시컬 스코핑함수가 다른 함수 내부에서 정의되었다면, 내부 함수는 외부 함수의 변수에 접근할 수 있습니다. 이런 행동을 렉시컬 스코핑이라고 합니다.\n\n읽은 자료 (혹은 참고한 링크)https://gist.github.com/LeoHeo/7c2a2a6dbcf80becaaa1e61e90091e5d\n자바스크립트에서 메모리 누수의 4가지 형태\n렉시컬 스코프\n","dateCreated":"2019-01-10T16:43:52+09:00","dateModified":"2019-01-15T16:55:48+09:00","datePublished":"2019-01-10T16:43:52+09:00","description":"","headline":"JAVASCRIPT 값 더 알아보기","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://kimseulbi.github.io/2019/01/10/JAVASCRIPT 심화 1/"},"publisher":{"@type":"Organization","name":"RAI KIM","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"https://kimseulbi.github.io/2019/01/10/JAVASCRIPT 심화 1/","keywords":"값 더 알아보기,JAVASCRIPT, const와 let 비교, var와 let,const 비교,scope, 블록스코프, 함수스코프, 호이스팅, 전역변수, 전역객체, 윈시타입, 참조타입, 불변성, 래처객체, 렉시컬 스코프"}</script>
+    <meta name="description" content="값 더 알아보기const와 let의 차이 let은 재대입 가능, const는 재대입 불가 const는 선언과 대입을 동시  const와 let의 공통점 let과 const 둘 다 같은 이름을 갖는 변수의 재선언을 허용하지 않음 변수가 선언되기 전에 참조하여고 하면 에러 블록 스코프를 갖음  var와 let,const의 차이 var는 재선언 가능 let, c">
+<meta name="keywords" content="값 더 알아보기,JAVASCRIPT, const와 let 비교, var와 let,const 비교,scope, 블록스코프, 함수스코프, 호이스팅, 전역변수, 전역객체, 윈시타입, 참조타입, 불변성, 래처객체, 렉시컬 스코프">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="JAVASCRIPT 값 더 알아보기">
+<meta property="og:url" content="https://kimseulbi.github.io/2019/01/10/JAVASCRIPT 심화 1/index.html">
+<meta property="og:site_name" content="RAI TIL">
+<meta property="og:description" content="값 더 알아보기const와 let의 차이 let은 재대입 가능, const는 재대입 불가 const는 선언과 대입을 동시  const와 let의 공통점 let과 const 둘 다 같은 이름을 갖는 변수의 재선언을 허용하지 않음 변수가 선언되기 전에 참조하여고 하면 에러 블록 스코프를 갖음  var와 let,const의 차이 var는 재선언 가능 let, c">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://kimseulbi.github.io/images/스코프체인.png">
+<meta property="og:updated_time" content="2019-01-15T07:55:48.008Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JAVASCRIPT 값 더 알아보기">
+<meta name="twitter:description" content="값 더 알아보기const와 let의 차이 let은 재대입 가능, const는 재대입 불가 const는 선언과 대입을 동시  const와 let의 공통점 let과 const 둘 다 같은 이름을 갖는 변수의 재선언을 허용하지 않음 변수가 선언되기 전에 참조하여고 하면 에러 블록 스코프를 갖음  var와 let,const의 차이 var는 재선언 가능 let, c">
+<meta name="twitter:image" content="https://kimseulbi.github.io/images/스코프체인.png">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
+    <!--STYLES END-->
+    
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">RAI TIL</a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about">
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://kimseulbi.github.io/" title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link open-algolia-search" href="#search" title="Search">
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="#about" title="About">
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
+                    
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
+                    
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
+                    
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google +">
+                    
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google +</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/mailto" title="Mail">
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            JAVASCRIPT 값 더 알아보기
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2019-01-10T16:43:52+09:00">
+	
+		    Jan 10, 2019
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h2 id="값-더-알아보기"><a href="#값-더-알아보기" class="headerlink" title="값 더 알아보기"></a>값 더 알아보기</h2><h3 id="const와-let의-차이"><a href="#const와-let의-차이" class="headerlink" title="const와 let의 차이"></a>const와 let의 차이</h3><ol>
 <li>let은 재대입 가능, const는 재대입 불가</li>
 <li>const는 선언과 대입을 동시</li>
 </ol>
@@ -128,4 +368,247 @@ let과 const 둘 다 같은 이름을 갖는 변수의 재선언을 허용하지
 <h2 id="읽은-자료-혹은-참고한-링크"><a href="#읽은-자료-혹은-참고한-링크" class="headerlink" title="읽은 자료 (혹은 참고한 링크)"></a>읽은 자료 (혹은 참고한 링크)</h2><p><a href="https://gist.github.com/LeoHeo/7c2a2a6dbcf80becaaa1e61e90091e5d" target="_blank" rel="noopener">https://gist.github.com/LeoHeo/7c2a2a6dbcf80becaaa1e61e90091e5d</a></p>
 <p><a href="https://itstory.tk/entry/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%97%90%EC%84%9C-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%88%84%EC%88%98%EC%9D%98-4%EA%B0%80%EC%A7%80-%ED%98%95%ED%83%9C" target="_blank" rel="noopener">자바스크립트에서 메모리 누수의 4가지 형태</a></p>
 <p><a href="https://meetup.toast.com/posts/86x" target="_blank" rel="noopener">렉시컬 스코프</a></p>
-</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-01-10</span><i class="fa fa-tag"></i><a class="tag" href="/tags/값-더-알아보기-JAVASCRIPT-const와-let-비교-var와-let-const-비교-scope-블록스코프-함수스코프-호이스팅-전역변수-전역객체-윈시타입-참조타입-불변성-래처객체-렉시컬-스코프/" title="값 더 알아보기,JAVASCRIPT, const와 let 비교, var와 let,const 비교,scope, 블록스코프, 함수스코프, 호이스팅, 전역변수, 전역객체, 윈시타입, 참조타입, 불변성, 래처객체, 렉시컬 스코프">값 더 알아보기,JAVASCRIPT, const와 let 비교, var와 let,const 비교,scope, 블록스코프, 함수스코프, 호이스팅, 전역변수, 전역객체, 윈시타입, 참조타입, 불변성, 래처객체, 렉시컬 스코프 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,https://kimseulbi.github.io/2019/01/10/JAVASCRIPT 심화 1/,RAI TIL,JAVASCRIPT 값 더 알아보기,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/01/11/Prototype/" title="JAVASCRIPT Prototype">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/01/08/Hexo블로그만들기/" title="Hexo 블로그 만들기">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
+
+            
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/값-더-알아보기-JAVASCRIPT-const와-let-비교-var와-let-const-비교-scope-블록스코프-함수스코프-호이스팅-전역변수-전역객체-윈시타입-참조타입-불변성-래처객체-렉시컬-스코프/">값 더 알아보기,JAVASCRIPT, const와 let 비교, var와 let,const 비교,scope, 블록스코프, 함수스코프, 호이스팅, 전역변수, 전역객체, 윈시타입, 참조타입, 불변성, 래처객체, 렉시컬 스코프</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/11/Prototype/" data-tooltip="JAVASCRIPT Prototype" aria-label="PREVIOUS: JAVASCRIPT Prototype">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/08/Hexo블로그만들기/" data-tooltip="Hexo 블로그 만들기" aria-label="NEXT: Hexo 블로그 만들기">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/01/10/JAVASCRIPT 심화 1/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/01/10/JAVASCRIPT 심화 1/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/01/10/JAVASCRIPT 심화 1/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 RAI KIM. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/11/Prototype/" data-tooltip="JAVASCRIPT Prototype" aria-label="PREVIOUS: JAVASCRIPT Prototype">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/08/Hexo블로그만들기/" data-tooltip="Hexo 블로그 만들기" aria-label="NEXT: Hexo 블로그 만들기">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/01/10/JAVASCRIPT 심화 1/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/01/10/JAVASCRIPT 심화 1/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/01/10/JAVASCRIPT 심화 1/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/01/10/JAVASCRIPT 심화 1/">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/01/10/JAVASCRIPT 심화 1/">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/01/10/JAVASCRIPT 심화 1/">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">RAI KIM</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+
+
+
+    </body>
+</html>

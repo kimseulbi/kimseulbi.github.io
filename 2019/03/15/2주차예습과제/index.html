@@ -1,9 +1,253 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="SEULBI KIM,ksb5166@gmail.com"><title>JAVASCRIPT 스터디 2주차 예습 · RAI TIL</title><meta name="description" content="값, 식, 문
-Primitive Type &amp;amp; Reference type 차이점 및 이해 (o)
-Truthy &amp;amp; Falsy 차이점 및 이해 (o)
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="RAI TIL">
+    <title>JAVASCRIPT 스터디 2주차 예습 - RAI TIL</title>
+    <meta name="author" content="RAI KIM">
+    
+        <meta name="keywords" content="블로그, blog, seulbi, @seulbikim, javascript, web, developer, node.js, HTML, CSS, SCSS, frontend,">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"RAI KIM","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"\n\n값, 식, 문\nPrimitive Type &amp; Reference type 차이점 및 이해 (o)\nTruthy &amp; Falsy 차이점 및 이해 (o)\n\n\n값값은 프로그램에 의해 조작될 수 있는 대상을 말합니다. 값은 다양한 방법으로 생성할 수있으며 프로그래밍 언어에서 값을 생성하는 가장 쉬운 방법은 리터럴을 사용하는 것입니다.\n12341; // 정수 리터럴2.5; // 부동 소수점 리터럴(\"hello\"); // 문자열 리터럴true; // 진리값 리터럴\n변수값에 이름을 붙여서 다시 쓸 수 있게 만드는 기능\n\n\n\n\nconst\nlet\nvar\n\n\n\n\n스코프\n블록 스코프\n블록 스코프\n함수 스코프\n\n\n재대입\nX\nO\nO\n\n\n재선언\nX\nX\nO\n\n\n호이스팅\nX\nX\nO\n\n\n사용 권장\n1 순위\n2 순위\n3 순위\n\n\n\n\n🏷 호이스팅\\호이스팅이란 var로 선언된 변수나 function의 선언부를 현재 scope의 최상단으로 끌어올려지는 현상입니다.\n\n식별자변수의 이름은 모두 식별자입니다.\n타입값의 종류를 가지고 자료형이라고 부릅니다.\n12typeof 1; // 'number'typeof \"hello\"; // 'string'\n식문조건문경우의 수\nif…elseif...else 구문을 사용하면 조건에 따라 특정 영역의 코드를 실행시키거나 실행시키지 않을 수 있습니다.\n1234567891011function translateColor(english) &#123;  if (english === \"red\") &#123;    return \"빨강색\";  &#125; else if (english === \"blue\") &#123;    return \"파랑색\";  &#125; else if (english === \"purple\" || english === \"violet\") &#123;    return \"보라색\";  &#125; else &#123;    return \"일치하는 색깔이 없습니다.\";  &#125;&#125;\nswitch변수에 대해 많은 경우 사용\n123456789101112131415161718function translateColor(english) &#123;  let result;  switch (english) &#123;    case \"red\":      result = \"빨강\";      break;    case \"blue\":      result = \"파랑\";      break;    case \"purple\":    case \"violet\":      result = \"보라\";      break;    default:      result = \"일치하는 색깔이 없습니다.\";  &#125;  return result;&#125;\n반복문여러 번 반복할 경우\nwhile특정 조건을 만족하는 한 코드를 반복해서 실행\n12345678let i = 0;while (i &lt; 5) &#123;  // 위 괄호의 값이 `true`인 동안에서  // 이 안쪽의 코드를 반봅해서 실행시킵니다.  console.log(`현재 i의 값: $&#123;i&#125;`);  i++; // 갱신&#125;\ndo…whilewhile 구문과 사용법은 크게 다르지 않으나, 내부 코드를 무조건 한번은 실행시킨다는 차이점이 있습니다.\n123do &#123;  console.log(\"do...while\");&#125; while (false); // 절대 `true`가 될 수 없지만, 루프는 1회 실행합니다.\nfor초기값을 정할 수 있고 갱신을 위한 코드가 짧은 경우 for구문 while구문을 사용해야 코드가 깔끔해집니다.\n123456// for문const arr = [1, 2, 3, 4, 5];for (let i = 0; i &lt; arr.length; i++) &#123;  console.log(`배열의 $&#123;i + 1&#125; 번째 요소는 $&#123;arr[i]&#125; 입니다.`);&#125;\n123456// forEachconst arr = [1, 2, 3, 4, 5];arr.forEach((item, index) =&gt; &#123;  console.log(`배열의 $&#123;index + 1&#125; 번째 요소는 $&#123;item&#125; 입니다.`);&#125;);\n123456// for...ofconst arr = [1, 2, 3, 4, 5];for (let item of arr) &#123;  console.log(`현재 요소는 $&#123;item&#125;입니다.`);&#125;\nPrimitive Type &amp; Reference type (원시타입 &amp; 참조타입)\n\n\n원시타입\n참조타입\n\n\n\n\nNumber\nObject\n\n\nString\n\n\n\nBoolean\n\n\n\nUndefined\n\n\n\nNull\n\n\n\nSymbol\n\n\n\n함수도 객체의 일종입니다.\n원시타입의 특징원시타입은 값 자체의 내용을 변경할 수 있는 방법이 없습니다. 이런 성징은 불변성이라고 합니다.\n기존 문자열의 내용을 바꾸는 것이 아니라 새 문자열을 반환합니다.\n123456let str1 = \"Hello world\";let str2 = st1;console.log(str2); // \"Hello world\" 출력str1 = \"Nice to meet you\";console.log(str2); // \"Hello world\" 출력\n원시타입은 데이터를 복사하여 전달하기 때문에 원본 데이터가 변경되어 쌓이고 복사된 데이터에 영향을 받지 않습니다.\n\n참조타입의 특징참조(Reference)란, 객체가 컴퓨터 메모리 상에서 어디에 저장되었는지를 가리키는 값입니다. JavaScript에서는 우리가 참조를 직접 읽거나 조작할 수 없습니다. 하지만, 언어를 제대로 이해하기 위해서 참조가 무엇인지 알아야 할 필요는 있습니다.\n참조를 통해 메모리에 저장되어 있는 객체에 접근해서 해당 객체의 속성을 읽습니다.이런 동작을 역참조(dereference)라고 합니다.\n12const obj = &#123; prop: 1 &#125;;obj.prop; // `obj`를 통해 역참조된 객체의 속성을 읽어왔습니다.\n123let obj1 = &#123; name: \"kim\" &#125;;let obj2 = obj1;console.log(obj2); // &#123;name: \"kim\"&#125; 출력\n변수 obj2은 변수 obj1이 가리키고 있는 { name: “kim” }를 가르키고 있어 { name: “kim” }으로 출력이 되었습니다.\n\n\n참조타입과 원시타입의 비교연산자12345// 원시타입 비교 연산자const str1 = \"hello\";const str2 = \"hello\";console.log(str1 === str2); // true\n원시타입은 값을 비교하기 때문에 true가 나옵니다.\n1234const obj1 = &#123; name: \"kim\" &#125;;const obj2 = &#123; name: \"kim\" &#125;;console.log(obj1 === obj2); // false\n객체의 내용을 비교하는 것이 아니라 객체의 참조를 비교합니다. 우리가 생성자나 리터럴을 이용해 객체를 생성하면, 객체는 매 번 새로 생성되어 각각 메모리의 다른 위치에 저장됩니다.그래서 내용이 똑같아 보이는 두 객체일지라도 그에 대한 참조는 서로 다른것입니다.\n\n하지만 두참조가 정말로 같은 객체를 가리키고 있다면 등호연산자는 true를 반환합니다.\n123const obj1 = &#123;&#125;;const obj2 = obj1;obj1 === obj2; // true\n객체의 내용을 통해 비교하고 싶다면, 깊은 비교 기능을 지원하는 라이브러리를 이용해야합니다.\n참고하기 좋은 영상[서형이에게물어봐야함]\nTruthy &amp; FalsyJS에서는 boolean 타입이 와야 하는 자리에 다른 타입의 값이 와도 에러가 나지 않고 실행됩니다.\n12345678// 1은 Truthyif (1) &#123;  console.log(\"이 코드는 실행됩니다.\");&#125;// 0은 Falsyif (0) &#123;  console.log(\"이 코드는 실행되지 않습니다.\");&#125;\ntrue -&gt; truthy, false -&gt; falsy라고 부릅니다.\n\n\n\ntruthy\nfalsy\n\n\n\n\nfalsy 말고 모든것\nfalse\n\n\n\nnull\n\n\n\nundefined\n\n\n\n0\n\n\n\nNaN\n\n\n\n‘’\n\n\n\n짧은 코드 작성은 가능하지만 코드의 의미가 불분명해지거나 논리적으로 놓치는 부분이 생길 수 있기 때문에 주의하여 사용합니다.\n참고한 자료및 주소https://m.blog.naver.com/PostView.nhn?blogId=gi_balja&amp;logNo=221137914754&amp;proxyReferer=https%3A%2F%2Fwww.google.com%2F\n","dateCreated":"2019-03-15T00:56:55+09:00","dateModified":"2019-03-17T23:14:15+09:00","datePublished":"2019-03-15T00:56:55+09:00","description":"","headline":"JAVASCRIPT 스터디 2주차 예습","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://kimseulbi.github.io/2019/03/15/2주차예습과제/"},"publisher":{"@type":"Organization","name":"RAI KIM","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"https://kimseulbi.github.io/2019/03/15/2주차예습과제/","keywords":"값, 식, 문, Primitive Type, Reference type, Truthy, Falsy"}</script>
+    <meta name="description" content="값, 식, 문 Primitive Type &amp;amp; Reference type 차이점 및 이해 (o) Truthy &amp;amp; Falsy 차이점 및 이해 (o)   값값은 프로그램에 의해 조작될 수 있는 대상을 말합니다. 값은 다양한 방법으로 생성할 수있으며 프로그래밍 언어에서 값을 생성하는 가장 쉬운 방법은 리터럴을 사용하는 것입니다. 12341; //">
+<meta name="keywords" content="값, 식, 문, Primitive Type, Reference type, Truthy, Falsy">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="JAVASCRIPT 스터디 2주차 예습">
+<meta property="og:url" content="https://kimseulbi.github.io/2019/03/15/2주차예습과제/index.html">
+<meta property="og:site_name" content="RAI TIL">
+<meta property="og:description" content="값, 식, 문 Primitive Type &amp;amp; Reference type 차이점 및 이해 (o) Truthy &amp;amp; Falsy 차이점 및 이해 (o)   값값은 프로그램에 의해 조작될 수 있는 대상을 말합니다. 값은 다양한 방법으로 생성할 수있으며 프로그래밍 언어에서 값을 생성하는 가장 쉬운 방법은 리터럴을 사용하는 것입니다. 12341; //">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://mblogthumb-phinf.pstatic.net/MjAxNzExMTJfMjM2/MDAxNTEwNDE0MzMyMDgw.wFeqAIoiGTjXNrT0Vtyp_YvOrO2Bfj4ZbqMvDczqrU0g.QEIJtBxTRlwHQe5STsDlSN-CSpQkKcXRtT1h0CJt1zMg.PNG.gi_balja/%ED%83%80%EC%9E%852.png?type=w800">
+<meta property="og:image" content="https://mblogthumb-phinf.pstatic.net/MjAxNzExMTJfMjY3/MDAxNTEwNDE0NTcyNTc0.2vO39Gn6ByJe4KqGixMT20SCW61ATxe2zEI5-E1JCcYg.drNX_-FX75VLuQacep8bKHUfx4cxdIbVilcQKr8uG8Ag.PNG.gi_balja/%ED%83%80%EC%9E%854.png?type=w800">
+<meta property="og:image" content="https://mblogthumb-phinf.pstatic.net/MjAxNzExMTJfMjM3/MDAxNTEwNDE0NjAwMzQz.byxF_TTnERDtiOVK_9M2kFC3YCAHCoRDnmQq-LvP278g.pMfGY9BDgi87sSUHwhXmnpySc1QfV1BEyUue5XaOGrAg.PNG.gi_balja/%ED%83%80%EC%9E%855.png?type=w800">
+<meta property="og:image" content="https://mblogthumb-phinf.pstatic.net/MjAxNzExMTJfNDkg/MDAxNTEwNDE0NzQyMzI2.njMQtCbYha_N1eh_axqTuYkYgRt6-AB5eUxZsboGEQwg.mE1msp032wvAxi5u2EECYz0tDIAAEeegdBSFDIfh-S4g.PNG.gi_balja/%ED%83%80%EC%9E%858.png?type=w800">
+<meta property="og:updated_time" content="2019-03-17T14:14:15.964Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JAVASCRIPT 스터디 2주차 예습">
+<meta name="twitter:description" content="값, 식, 문 Primitive Type &amp;amp; Reference type 차이점 및 이해 (o) Truthy &amp;amp; Falsy 차이점 및 이해 (o)   값값은 프로그램에 의해 조작될 수 있는 대상을 말합니다. 값은 다양한 방법으로 생성할 수있으며 프로그래밍 언어에서 값을 생성하는 가장 쉬운 방법은 리터럴을 사용하는 것입니다. 12341; //">
+<meta name="twitter:image" content="https://mblogthumb-phinf.pstatic.net/MjAxNzExMTJfMjM2/MDAxNTEwNDE0MzMyMDgw.wFeqAIoiGTjXNrT0Vtyp_YvOrO2Bfj4ZbqMvDczqrU0g.QEIJtBxTRlwHQe5STsDlSN-CSpQkKcXRtT1h0CJt1zMg.PNG.gi_balja/%ED%83%80%EC%9E%852.png?type=w800">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
+    <!--STYLES END-->
+    
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
 
 
-값값은 프로그램에 의해 조작될 수 있는 대상을 말합니다. 값은 다양한 방법으로 생성할 수있으며 프로그래밍 "><meta name="keywords" content="Hexo,블로그, blog, seulbi, @seulbikim, javascript, web, developer, node.js, HTML, CSS, SCSS, frontend"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">RAI TIL</a></h3><div class="description"><p>시옷스 스터디에서 학습한 내용 정리, 개발하면서 삽질한 것 정리</p></div></div></div><ul class="social-links"><li><a href="http://github.com/kimseulbi"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li></li><li><a href="/archives">归档</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>JAVASCRIPT 스터디 2주차 예습</a></h3></div><div class="post-content"><blockquote>
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">RAI TIL</a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about">
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://kimseulbi.github.io/" title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link open-algolia-search" href="#search" title="Search">
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="#about" title="About">
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
+                    
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
+                    
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
+                    
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google +">
+                    
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google +</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/mailto" title="Mail">
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            JAVASCRIPT 스터디 2주차 예습
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2019-03-15T00:56:55+09:00">
+	
+		    Mar 15, 2019
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <blockquote>
 <ol>
 <li>값, 식, 문</li>
 <li>Primitive Type &amp; Reference type 차이점 및 이해 (o)</li>
@@ -169,4 +413,247 @@ Truthy &amp;amp; Falsy 차이점 및 이해 (o)
 </table>
 <p>짧은 코드 작성은 가능하지만 코드의 의미가 불분명해지거나 논리적으로 놓치는 부분이 생길 수 있기 때문에 주의하여 사용합니다.</p>
 <h2 id="참고한-자료및-주소"><a href="#참고한-자료및-주소" class="headerlink" title="참고한 자료및 주소"></a>참고한 자료및 주소</h2><p><a href="https://m.blog.naver.com/PostView.nhn?blogId=gi_balja&amp;logNo=221137914754&amp;proxyReferer=https%3A%2F%2Fwww.google.com%2F" target="_blank" rel="noopener">https://m.blog.naver.com/PostView.nhn?blogId=gi_balja&amp;logNo=221137914754&amp;proxyReferer=https%3A%2F%2Fwww.google.com%2F</a></p>
-</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-03-15</span><i class="fa fa-tag"></i><a class="tag" href="/tags/값-식-문-Primitive-Type-Reference-type-Truthy-Falsy/" title="값, 식, 문, Primitive Type, Reference type, Truthy, Falsy">값, 식, 문, Primitive Type, Reference type, Truthy, Falsy </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,https://kimseulbi.github.io/2019/03/15/2주차예습과제/,RAI TIL,JAVASCRIPT 스터디 2주차 예습,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/03/17/2주차복습과제/" title="JAVASCRIPT 스터디 2주차 복습">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/01/11/Prototype/" title="JAVASCRIPT Prototype">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
+
+            
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/값-식-문-Primitive-Type-Reference-type-Truthy-Falsy/">값, 식, 문, Primitive Type, Reference type, Truthy, Falsy</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/17/2주차복습과제/" data-tooltip="JAVASCRIPT 스터디 2주차 복습" aria-label="PREVIOUS: JAVASCRIPT 스터디 2주차 복습">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/11/Prototype/" data-tooltip="JAVASCRIPT Prototype" aria-label="NEXT: JAVASCRIPT Prototype">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/03/15/2주차예습과제/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/03/15/2주차예습과제/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/03/15/2주차예습과제/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 RAI KIM. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/17/2주차복습과제/" data-tooltip="JAVASCRIPT 스터디 2주차 복습" aria-label="PREVIOUS: JAVASCRIPT 스터디 2주차 복습">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/11/Prototype/" data-tooltip="JAVASCRIPT Prototype" aria-label="NEXT: JAVASCRIPT Prototype">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/03/15/2주차예습과제/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/03/15/2주차예습과제/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/03/15/2주차예습과제/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/03/15/2주차예습과제/">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/03/15/2주차예습과제/">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/03/15/2주차예습과제/">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">RAI KIM</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+
+
+
+    </body>
+</html>
