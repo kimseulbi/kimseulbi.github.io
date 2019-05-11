@@ -1,247 +1,169 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="RAI TIL">
-    <title>Type Ahead - RAI TIL</title>
-    <meta name="author" content="RAI KIM">
-    
-        <meta name="keywords" content="블로그, blog, seulbi, @seulbikim, javascript, web, developer, node.js, HTML, CSS, SCSS, frontend,">
-    
-    
-    
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"RAI KIM","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"구현내용\nfetch API를 통해 api를 받아와서 JSON형태로 가공\nJSON데이터를 input에 입력 할때 데이터만 필터링\n필터링된 문자 하이라이트 표시\n\n🏷 fetch API\n웹피이지 전체를 리로드하지 않고 일부분만을 리로드하고 비동기싱으로 데이터를 불러와 작업하는 XMLHttpRequest 객체\nweb에서 비동기로 요청하기 위해서는 XHR객체사용IE에서 ajax 요청을 보내기가 까다로워서 jquery AJAX나 axios, superagent같은 라이브러리 등장\nXHR의 부족한 부분을 보완하기 위해서 Fetch API를 도입\n\naxios는 XHR을 사용하는데, Service Worker등의 최신 기숭이 XHR을 지원하지 않으므로 Service worker를 사용할 예정이라면 Fetch API를 사용해야 합니다.create-react-app 에도 Service Worker가 있습니다.\n\n1234// fetch apifetch(endpoint)  .then(blob =&gt; blob.json())  .then(data =&gt; cities.push(...data));\ncode12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364//endpoint변수에 주소를 담음const endpoint =  \"https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json\";// cities 초기화, 검색어에 따라서 변환const cities = [];// fetch apifetch(endpoint)  // 객체의 값을 json으로 변환  .then(blob =&gt; blob.json())  // data에 'cities에 ...data'를 push  .then(data =&gt; cities.push(...data));// 기본구조: fetch('주소', 설정객체).then(콜백).catch(콜백);function findMatches(wordToMatch, cities) &#123;  //wordToMatch : input text value  // 여기서 우리는 도시나 제대로 검색된 것과 일치하는지 알아내야함  return cities.filter(place =&gt; &#123;    // RegExp : 사용하면 문자열을 검색하고 문자열의 텍스트를 바꾸는 데 사용할 수 있는 패턴인 일반 표현식을 사용할 수 있습니다    const regex = new RegExp(wordToMatch, \"gi\");    // RegExp match매소드 : 대응되는 문자열을 찾는 RegExp 메소드입니다. 정보를 가지고 있는 배열을 반환합니다. 대응되는 문자열을 찾지 못했다면 null을 반환합니다.    return place.city.match(regex) || place.state.match(regex);  &#125;);&#125;// toString() : 숫자를 문자형으로 변환// replace() :  문자열의 특정 부분을 바꾼 새 문자열을 생성할때 사용function numberWithCommas(x) &#123;  return x.toString().replace(/\\B(?=(\\d&#123;3&#125;)+(?!\\d))/g, \",\");&#125;function displayMatches() &#123;  //일치하는 값을 matchArray에 담기  const matchArray = findMatches(this.value, cities);  //this = target.event  const html = matchArray    .map(place =&gt; &#123;      const regex = new RegExp(this.value, \"gi\");      const cityName = place.city.replace(        regex,        `&lt;span class=\"hl\"&gt;$&#123;this.value&#125;&lt;/span&gt;`      );      const stateName = place.state.replace(        regex,        `&lt;span class=\"hl\"&gt;$&#123;this.value&#125;&lt;/span&gt;`      );      return `      &lt;li&gt;        &lt;span class=\"name\"&gt;$&#123;cityName&#125;, $&#123;stateName&#125;&lt;/span&gt;        &lt;span class=\"population\"&gt;$&#123;numberWithCommas(place.population)&#125;&lt;/span&gt;      &lt;/li&gt;    `;    &#125;)    .join(\"\");  suggestions.innerHTML = html;&#125;const searchInput = document.querySelector(\".search\");const suggestions = document.querySelector(\".suggestions\");searchInput.addEventListener(\"change\", displayMatches);searchInput.addEventListener(\"keyup\", displayMatches);\n","dateCreated":"2019-04-12T21:16:22+09:00","dateModified":"2019-04-19T04:11:23+09:00","datePublished":"2019-04-12T21:16:22+09:00","description":"","headline":"Type Ahead","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://kimseulbi.github.io/2019/04/12/ Type Ahead/"},"publisher":{"@type":"Organization","name":"RAI KIM","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"https://kimseulbi.github.io/2019/04/12/ Type Ahead/","keywords":"JS30"}</script>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>Type Ahead - RAI TIL</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
     <meta name="description" content="구현내용 fetch API를 통해 api를 받아와서 JSON형태로 가공 JSON데이터를 input에 입력 할때 데이터만 필터링 필터링된 문자 하이라이트 표시  🏷 fetch API 웹피이지 전체를 리로드하지 않고 일부분만을 리로드하고 비동기싱으로 데이터를 불러와 작업하는 XMLHttpRequest 객체 web에서 비동기로 요청하기 위해서는 XHR객체사용I">
 <meta name="keywords" content="JS30">
-<meta property="og:type" content="blog">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Type Ahead">
 <meta property="og:url" content="https://kimseulbi.github.io/2019/04/12/ Type Ahead/index.html">
 <meta property="og:site_name" content="RAI TIL">
 <meta property="og:description" content="구현내용 fetch API를 통해 api를 받아와서 JSON형태로 가공 JSON데이터를 input에 입력 할때 데이터만 필터링 필터링된 문자 하이라이트 표시  🏷 fetch API 웹피이지 전체를 리로드하지 않고 일부분만을 리로드하고 비동기싱으로 데이터를 불러와 작업하는 XMLHttpRequest 객체 web에서 비동기로 요청하기 위해서는 XHR객체사용I">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://kimseulbi.github.io/images/og_image.png">
 <meta property="og:updated_time" content="2019-04-18T19:11:23.865Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Type Ahead">
 <meta name="twitter:description" content="구현내용 fetch API를 통해 api를 받아와서 JSON형태로 가공 JSON데이터를 input에 입력 할때 데이터만 필터링 필터링된 문자 하이라이트 표시  🏷 fetch API 웹피이지 전체를 리로드하지 않고 일부분만을 리로드하고 비동기싱으로 데이터를 불러와 작업하는 XMLHttpRequest 객체 web에서 비동기로 요청하기 위해서는 XHR객체사용I">
+<meta name="twitter:image" content="https://kimseulbi.github.io/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
     
     
-        
     
-    
-    
-    
-    
-    <!--STYLES-->
-    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
-    <!--STYLES END-->
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
     
 
     
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
 </head>
-
-    <body>
-        <div id="blog">
-            <!-- Define author's picture -->
-
-
-    
-
-<header id="header" data-behavior="4">
-    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
-    <div class="header-title">
-        <a class="header-title-link" href="/ ">RAI TIL</a>
-    </div>
-    
-        
-            <a class="header-right-picture " href="#about">
-        
-        
-        </a>
-    
-</header>
-
-            <!-- Define author's picture -->
-
-
-<nav id="sidebar" data-behavior="4">
-    <div class="sidebar-container">
-        
-        
-            <ul class="sidebar-buttons">
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
             
-                <li class="sidebar-button">
+                <img src="/images/logo.svg" alt="Type Ahead" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
                     
-                        <a class="sidebar-button-link " href="https://kimseulbi.github.io/" title="Home">
                     
-                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Home</span>
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
                     </a>
-            </li>
-            
-                <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
-                    
-                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
-                    
-                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Tags</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
-                    
-                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link open-algolia-search" href="#search" title="Search">
-                    
-                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Search</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="#about" title="About">
-                    
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
-                    
-                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">GitHub</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
-                    
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
-                    
-                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Twitter</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-                    
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google +">
-                    
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google +</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
-                    
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/mailto" title="Mail">
-                    
-                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Mail</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
-                    
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
     </div>
 </nav>
-
-            
-            <div id="main" data-behavior="4"
-                 class="
-                        hasCoverMetaIn
-                        ">
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-04-12T12:16:22.000Z">2019-04-12</time>
                 
-<article class="post">
-    
-    
-        <div class="post-header main-content-wrap text-left">
-    
-        <h1 class="post-title">
-            Type Ahead
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 627 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Type Ahead
+            
         </h1>
-    
-    
-        <div class="post-meta">
-    <time datetime="2019-04-12T21:16:22+09:00">
-	
-		    Apr 12, 2019
-    	
-    </time>
-    
-</div>
-
-    
-</div>
-
-    
-    <div class="post-content markdown">
-        <div class="main-content-wrap">
+        <div class="content">
             <h2 id="구현내용"><a href="#구현내용" class="headerlink" title="구현내용"></a>구현내용</h2><ul>
 <li>fetch API를 통해 api를 받아와서 JSON형태로 가공</li>
 <li>JSON데이터를 input에 입력 할때 데이터만 필터링</li>
@@ -254,249 +176,930 @@
 <blockquote>
 <p>axios는 XHR을 사용하는데, <code>Service Worker</code>등의 최신 기숭이 XHR을 지원하지 않으므로 Service worker를 사용할 예정이라면 <code>Fetch API</code>를 사용해야 합니다.<br>create-react-app 에도 Service Worker가 있습니다.</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fetch api</span></span><br><span class="line">fetch(endpoint)</span><br><span class="line">  .then(<span class="function"><span class="params">blob</span> =&gt;</span> blob.json())</span><br><span class="line">  .then(<span class="function"><span class="params">data</span> =&gt;</span> cities.push(...data));</span><br></pre></td></tr></table></figure>
-<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//endpoint변수에 주소를 담음</span></span><br><span class="line"><span class="keyword">const</span> endpoint =</span><br><span class="line">  <span class="string">"https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// cities 초기화, 검색어에 따라서 변환</span></span><br><span class="line"><span class="keyword">const</span> cities = [];</span><br><span class="line"></span><br><span class="line"><span class="comment">// fetch api</span></span><br><span class="line">fetch(endpoint)</span><br><span class="line">  <span class="comment">// 객체의 값을 json으로 변환</span></span><br><span class="line">  .then(<span class="function"><span class="params">blob</span> =&gt;</span> blob.json())</span><br><span class="line">  <span class="comment">// data에 'cities에 ...data'를 push</span></span><br><span class="line">  .then(<span class="function"><span class="params">data</span> =&gt;</span> cities.push(...data));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 기본구조: fetch('주소', 설정객체).then(콜백).catch(콜백);</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findMatches</span>(<span class="params">wordToMatch, cities</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//wordToMatch : input text value</span></span><br><span class="line">  <span class="comment">// 여기서 우리는 도시나 제대로 검색된 것과 일치하는지 알아내야함</span></span><br><span class="line">  <span class="keyword">return</span> cities.filter(<span class="function"><span class="params">place</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// RegExp : 사용하면 문자열을 검색하고 문자열의 텍스트를 바꾸는 데 사용할 수 있는 패턴인 일반 표현식을 사용할 수 있습니다</span></span><br><span class="line">    <span class="keyword">const</span> regex = <span class="keyword">new</span> <span class="built_in">RegExp</span>(wordToMatch, <span class="string">"gi"</span>);</span><br><span class="line">    <span class="comment">// RegExp match매소드 : 대응되는 문자열을 찾는 RegExp 메소드입니다. 정보를 가지고 있는 배열을 반환합니다. 대응되는 문자열을 찾지 못했다면 null을 반환합니다.</span></span><br><span class="line">    <span class="keyword">return</span> place.city.match(regex) || place.state.match(regex);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// toString() : 숫자를 문자형으로 변환</span></span><br><span class="line"><span class="comment">// replace() :  문자열의 특정 부분을 바꾼 새 문자열을 생성할때 사용</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">numberWithCommas</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x.toString().replace(<span class="regexp">/\B(?=(\d&#123;3&#125;)+(?!\d))/g</span>, <span class="string">","</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">displayMatches</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//일치하는 값을 matchArray에 담기</span></span><br><span class="line">  <span class="keyword">const</span> matchArray = findMatches(<span class="keyword">this</span>.value, cities);</span><br><span class="line">  <span class="comment">//this = target.event</span></span><br><span class="line">  <span class="keyword">const</span> html = matchArray</span><br><span class="line">    .map(<span class="function"><span class="params">place</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> regex = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="keyword">this</span>.value, <span class="string">"gi"</span>);</span><br><span class="line">      <span class="keyword">const</span> cityName = place.city.replace(</span><br><span class="line">        regex,</span><br><span class="line">        <span class="string">`&lt;span class="hl"&gt;<span class="subst">$&#123;<span class="keyword">this</span>.value&#125;</span>&lt;/span&gt;`</span></span><br><span class="line">      );</span><br><span class="line">      <span class="keyword">const</span> stateName = place.state.replace(</span><br><span class="line">        regex,</span><br><span class="line">        <span class="string">`&lt;span class="hl"&gt;<span class="subst">$&#123;<span class="keyword">this</span>.value&#125;</span>&lt;/span&gt;`</span></span><br><span class="line">      );</span><br><span class="line">      <span class="keyword">return</span> <span class="string">`</span></span><br><span class="line"><span class="string">      &lt;li&gt;</span></span><br><span class="line"><span class="string">        &lt;span class="name"&gt;<span class="subst">$&#123;cityName&#125;</span>, <span class="subst">$&#123;stateName&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">        &lt;span class="population"&gt;<span class="subst">$&#123;numberWithCommas(place.population)&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">      &lt;/li&gt;</span></span><br><span class="line"><span class="string">    `</span>;</span><br><span class="line">    &#125;)</span><br><span class="line">    .join(<span class="string">""</span>);</span><br><span class="line">  suggestions.innerHTML = html;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> searchInput = <span class="built_in">document</span>.querySelector(<span class="string">".search"</span>);</span><br><span class="line"><span class="keyword">const</span> suggestions = <span class="built_in">document</span>.querySelector(<span class="string">".suggestions"</span>);</span><br><span class="line"></span><br><span class="line">searchInput.addEventListener(<span class="string">"change"</span>, displayMatches);</span><br><span class="line">searchInput.addEventListener(<span class="string">"keyup"</span>, displayMatches);</span><br></pre></td></tr></table></figure>
-
-            
+<figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// fetch api</span></span><br><span class="line">fetch(endpoint)</span><br><span class="line">  .then(<span class="hljs-function"><span class="hljs-params">blob</span> =&gt;</span> blob.json())</span><br><span class="line">  .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> cities.push(...data));</span><br></pre></td></tr></table></figure>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//endpoint변수에 주소를 담음</span></span><br><span class="line"><span class="hljs-keyword">const</span> endpoint =</span><br><span class="line">  <span class="hljs-string">"https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json"</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// cities 초기화, 검색어에 따라서 변환</span></span><br><span class="line"><span class="hljs-keyword">const</span> cities = [];</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// fetch api</span></span><br><span class="line">fetch(endpoint)</span><br><span class="line">  <span class="hljs-comment">// 객체의 값을 json으로 변환</span></span><br><span class="line">  .then(<span class="hljs-function"><span class="hljs-params">blob</span> =&gt;</span> blob.json())</span><br><span class="line">  <span class="hljs-comment">// data에 'cities에 ...data'를 push</span></span><br><span class="line">  .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> cities.push(...data));</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 기본구조: fetch('주소', 설정객체).then(콜백).catch(콜백);</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">findMatches</span>(<span class="hljs-params">wordToMatch, cities</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-comment">//wordToMatch : input text value</span></span><br><span class="line">  <span class="hljs-comment">// 여기서 우리는 도시나 제대로 검색된 것과 일치하는지 알아내야함</span></span><br><span class="line">  <span class="hljs-keyword">return</span> cities.filter(<span class="hljs-function"><span class="hljs-params">place</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="hljs-comment">// RegExp : 사용하면 문자열을 검색하고 문자열의 텍스트를 바꾸는 데 사용할 수 있는 패턴인 일반 표현식을 사용할 수 있습니다</span></span><br><span class="line">    <span class="hljs-keyword">const</span> regex = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(wordToMatch, <span class="hljs-string">"gi"</span>);</span><br><span class="line">    <span class="hljs-comment">// RegExp match매소드 : 대응되는 문자열을 찾는 RegExp 메소드입니다. 정보를 가지고 있는 배열을 반환합니다. 대응되는 문자열을 찾지 못했다면 null을 반환합니다.</span></span><br><span class="line">    <span class="hljs-keyword">return</span> place.city.match(regex) || place.state.match(regex);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// toString() : 숫자를 문자형으로 변환</span></span><br><span class="line"><span class="hljs-comment">// replace() :  문자열의 특정 부분을 바꾼 새 문자열을 생성할때 사용</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">numberWithCommas</span>(<span class="hljs-params">x</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> x.toString().replace(<span class="hljs-regexp">/\B(?=(\d&#123;3&#125;)+(?!\d))/g</span>, <span class="hljs-string">","</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">displayMatches</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">  <span class="hljs-comment">//일치하는 값을 matchArray에 담기</span></span><br><span class="line">  <span class="hljs-keyword">const</span> matchArray = findMatches(<span class="hljs-keyword">this</span>.value, cities);</span><br><span class="line">  <span class="hljs-comment">//this = target.event</span></span><br><span class="line">  <span class="hljs-keyword">const</span> html = matchArray</span><br><span class="line">    .map(<span class="hljs-function"><span class="hljs-params">place</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="hljs-keyword">const</span> regex = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(<span class="hljs-keyword">this</span>.value, <span class="hljs-string">"gi"</span>);</span><br><span class="line">      <span class="hljs-keyword">const</span> cityName = place.city.replace(</span><br><span class="line">        regex,</span><br><span class="line">        <span class="hljs-string">`&lt;span class="hl"&gt;<span class="hljs-subst">$&#123;<span class="hljs-keyword">this</span>.value&#125;</span>&lt;/span&gt;`</span></span><br><span class="line">      );</span><br><span class="line">      <span class="hljs-keyword">const</span> stateName = place.state.replace(</span><br><span class="line">        regex,</span><br><span class="line">        <span class="hljs-string">`&lt;span class="hl"&gt;<span class="hljs-subst">$&#123;<span class="hljs-keyword">this</span>.value&#125;</span>&lt;/span&gt;`</span></span><br><span class="line">      );</span><br><span class="line">      <span class="hljs-keyword">return</span> <span class="hljs-string">`</span></span><br><span class="line"><span class="hljs-string">      &lt;li&gt;</span></span><br><span class="line"><span class="hljs-string">        &lt;span class="name"&gt;<span class="hljs-subst">$&#123;cityName&#125;</span>, <span class="hljs-subst">$&#123;stateName&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="hljs-string">        &lt;span class="population"&gt;<span class="hljs-subst">$&#123;numberWithCommas(place.population)&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="hljs-string">      &lt;/li&gt;</span></span><br><span class="line"><span class="hljs-string">    `</span>;</span><br><span class="line">    &#125;)</span><br><span class="line">    .join(<span class="hljs-string">""</span>);</span><br><span class="line">  suggestions.innerHTML = html;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> searchInput = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">".search"</span>);</span><br><span class="line"><span class="hljs-keyword">const</span> suggestions = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">".suggestions"</span>);</span><br><span class="line"></span><br><span class="line">searchInput.addEventListener(<span class="hljs-string">"change"</span>, displayMatches);</span><br><span class="line">searchInput.addEventListener(<span class="hljs-string">"keyup"</span>, displayMatches);</span><br></pre></td></tr></table></figure>
 
         </div>
-    </div>
-    <div id="post-footer" class="post-footer main-content-wrap">
         
-            <div class="post-footer-tags">
-                <span class="text-color-light text-small">TAGGED IN</span><br>
-                
-    <a class="tag tag--primary tag--small t-link" href="/tags/JS30/">JS30</a>
-
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/JS30/">JS30</a>
+                </div>
             </div>
+        </div>
         
         
-            <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/18/7주차예습과제/" data-tooltip="JAVASCRIPT 스터디 7주차 예습" aria-label="PREVIOUS: JAVASCRIPT 스터디 7주차 예습">
-                
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/12/naverthechconcent/" data-tooltip="(no title)" aria-label="NEXT: (no title)">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
-                <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </a>
-        </li>
         
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/04/12/ Type Ahead/" title="Share on Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/04/12/ Type Ahead/" title="Share on Twitter">
-                    <i class="fab fa-twitter" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/04/12/ Type Ahead/" title="Share on Google+">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-        
-            
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
-            
-                <i class="fa fa-list" aria-hidden="true"></i>
-            </a>
-        </li>
-    </ul>
+    </div>
 </div>
 
 
-        
-        
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
             
-        
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+        </div>
     </div>
-</article>
-
-
-
-                <footer id="footer" class="main-content-wrap">
-    <span class="copyrights">
-        Copyrights &copy; 2019 RAI KIM. All Rights Reserved.
-    </span>
-</footer>
-
-            </div>
-            
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
-                    <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/18/7주차예습과제/" data-tooltip="JAVASCRIPT 스터디 7주차 예습" aria-label="PREVIOUS: JAVASCRIPT 스터디 7주차 예습">
-                
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/12/naverthechconcent/" data-tooltip="(no title)" aria-label="NEXT: (no title)">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
-                <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </a>
-        </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/04/12/ Type Ahead/" title="Share on Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/04/12/ Type Ahead/" title="Share on Twitter">
-                    <i class="fab fa-twitter" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/04/12/ Type Ahead/" title="Share on Google+">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-        
-            
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
-            
-                <i class="fa fa-list" aria-hidden="true"></i>
-            </a>
-        </li>
-    </ul>
 </div>
 
 
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/04/18/7주차예습과제/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">JAVASCRIPT 스터디 7주차 예습</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/04/12/naverthechconcent/">
+                <span class="level-item"></span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="Your name">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Your name
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Your title
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Your location</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        17
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        10
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/ppoffice">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/Grammar-Type-Primitive-Reference-Value-Expression-Statement-Memory-Truthy-Falsy-Scope/" style="font-size: 10px;">Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy & Falsy, Scope</a> <a href="/tags/Hexo-블로그-Markdown/" style="font-size: 10px;">Hexo, 블로그, Markdown</a> <a href="/tags/JAVASCRIPT-Object-객체-Prototype/" style="font-size: 10px;">JAVASCRIPT, Object, 객체, Prototype</a> <a href="/tags/JS30/" style="font-size: 10px;">JS30</a> <a href="/tags/값-더-알아보기-JAVASCRIPT-const와-let-비교-var와-let-const-비교-scope-블록스코프-함수스코프-호이스팅-전역변수-전역객체-윈시타입-참조타입-불변성-래처객체-렉시컬-스코프/" style="font-size: 10px;">값 더 알아보기,JAVASCRIPT, const와 let 비교, var와 let,const 비교,scope, 블록스코프, 함수스코프, 호이스팅, 전역변수, 전역객체, 윈시타입, 참조타입, 불변성, 래처객체, 렉시컬 스코프</a> <a href="/tags/값-식-문-Primitive-Type-Reference-type-Truthy-Falsy/" style="font-size: 10px;">값, 식, 문, Primitive Type, Reference type, Truthy, Falsy</a> <a href="/tags/내장객체-객체/" style="font-size: 10px;">내장객체, 객체</a> <a href="/tags/클래스/" style="font-size: 10px;">클래스</a> <a href="/tags/프로토타입-생성자-객체지향-인스턴스/" style="font-size: 10px;">프로토타입, 생성자, 객체지향, 인스턴스</a> <a href="/tags/함수-클로저-this바뀌치기/" style="font-size: 10px;">함수, 클로저, this바뀌치기</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/04/21/FunWithHTML5Canvas/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="FunWithHTML5Canvas">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-20T15:15:13.000Z">2019-04-21</time></div>
+                    <a href="/2019/04/21/FunWithHTML5Canvas/" class="has-link-black-ter is-size-6">FunWithHTML5Canvas</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/20/ArrayCardioDay2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="07_ArrayCardioDay2">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-20T13:57:38.000Z">2019-04-20</time></div>
+                    <a href="/2019/04/20/ArrayCardioDay2/" class="has-link-black-ter is-size-6">07_ArrayCardioDay2</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/18/7주차예습과제/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="JAVASCRIPT 스터디 7주차 예습">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-18T14:13:27.000Z">2019-04-18</time></div>
+                    <a href="/2019/04/18/7주차예습과제/" class="has-link-black-ter is-size-6">JAVASCRIPT 스터디 7주차 예습</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/12/ Type Ahead/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Type Ahead">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-12T12:16:22.000Z">2019-04-12</time></div>
+                    <a href="/2019/04/12/ Type Ahead/" class="has-link-black-ter is-size-6">Type Ahead</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/12/naverthechconcent/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-12T03:43:55.856Z">2019-04-12</time></div>
+                    <a href="/2019/04/12/naverthechconcent/" class="has-link-black-ter is-size-6"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Grammar-Type-Primitive-Reference-Value-Expression-Statement-Memory-Truthy-Falsy-Scope/">
+                        <span class="tag">Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy &amp; Falsy, Scope</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
                 </div>
                 
-    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
-        <i id="btn-close-shareoptions" class="fa fa-times"></i>
-        <ul class="share-options">
-            
-                
-                
-                <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/04/12/ Type Ahead/">
-                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo-블로그-Markdown/">
+                        <span class="tag">Hexo, 블로그, Markdown</span>
+                        <span class="tag is-grey">1</span>
                     </a>
-                </li>
-            
+                </div>
                 
-                
-                <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/04/12/ Type Ahead/">
-                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JAVASCRIPT-Object-객체-Prototype/">
+                        <span class="tag">JAVASCRIPT, Object, 객체, Prototype</span>
+                        <span class="tag is-grey">1</span>
                     </a>
-                </li>
-            
+                </div>
                 
-                
-                <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/04/12/ Type Ahead/">
-                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JS30/">
+                        <span class="tag">JS30</span>
+                        <span class="tag is-grey">1</span>
                     </a>
-                </li>
-            
-        </ul>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/값-더-알아보기-JAVASCRIPT-const와-let-비교-var와-let-const-비교-scope-블록스코프-함수스코프-호이스팅-전역변수-전역객체-윈시타입-참조타입-불변성-래처객체-렉시컬-스코프/">
+                        <span class="tag">값 더 알아보기,JAVASCRIPT, const와 let 비교, var와 let,const 비교,scope, 블록스코프, 함수스코프, 호이스팅, 전역변수, 전역객체, 윈시타입, 참조타입, 불변성, 래처객체, 렉시컬 스코프</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/값-식-문-Primitive-Type-Reference-type-Truthy-Falsy/">
+                        <span class="tag">값, 식, 문, Primitive Type, Reference type, Truthy, Falsy</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/내장객체-객체/">
+                        <span class="tag">내장객체, 객체</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/클래스/">
+                        <span class="tag">클래스</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/프로토타입-생성자-객체지향-인스턴스/">
+                        <span class="tag">프로토타입, 생성자, 객체지향, 인스턴스</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/함수-클로저-this바뀌치기/">
+                        <span class="tag">함수, 클로저, this바뀌치기</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
     </div>
-
-
-            
-        </div>
-        
-
-
-<div id="about">
-    <div id="about-card">
-        <div id="about-btn-close">
-            <i class="fa fa-times"></i>
-        </div>
-        
-            <h4 id="about-card-name">RAI KIM</h4>
-        
-            <div id="about-card-bio"><p>author.bio</p>
 </div>
         
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
         
-            <div id="about-card-job">
-                <i class="fa fa-briefcase"></i>
-                <br>
-                <p>author.job</p>
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/04/21/FunWithHTML5Canvas/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="FunWithHTML5Canvas">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-20T15:15:13.000Z">2019-04-21</time></div>
+                    <a href="/2019/04/21/FunWithHTML5Canvas/" class="has-link-black-ter is-size-6">FunWithHTML5Canvas</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/20/ArrayCardioDay2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="07_ArrayCardioDay2">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-20T13:57:38.000Z">2019-04-20</time></div>
+                    <a href="/2019/04/20/ArrayCardioDay2/" class="has-link-black-ter is-size-6">07_ArrayCardioDay2</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/18/7주차예습과제/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="JAVASCRIPT 스터디 7주차 예습">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-18T14:13:27.000Z">2019-04-18</time></div>
+                    <a href="/2019/04/18/7주차예습과제/" class="has-link-black-ter is-size-6">JAVASCRIPT 스터디 7주차 예습</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/12/ Type Ahead/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Type Ahead">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-12T12:16:22.000Z">2019-04-12</time></div>
+                    <a href="/2019/04/12/ Type Ahead/" class="has-link-black-ter is-size-6">Type Ahead</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/12/naverthechconcent/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-12T03:43:55.856Z">2019-04-12</time></div>
+                    <a href="/2019/04/12/naverthechconcent/" class="has-link-black-ter is-size-6"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Grammar-Type-Primitive-Reference-Value-Expression-Statement-Memory-Truthy-Falsy-Scope/">
+                        <span class="tag">Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy &amp; Falsy, Scope</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo-블로그-Markdown/">
+                        <span class="tag">Hexo, 블로그, Markdown</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JAVASCRIPT-Object-객체-Prototype/">
+                        <span class="tag">JAVASCRIPT, Object, 객체, Prototype</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JS30/">
+                        <span class="tag">JS30</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/값-더-알아보기-JAVASCRIPT-const와-let-비교-var와-let-const-비교-scope-블록스코프-함수스코프-호이스팅-전역변수-전역객체-윈시타입-참조타입-불변성-래처객체-렉시컬-스코프/">
+                        <span class="tag">값 더 알아보기,JAVASCRIPT, const와 let 비교, var와 let,const 비교,scope, 블록스코프, 함수스코프, 호이스팅, 전역변수, 전역객체, 윈시타입, 참조타입, 불변성, 래처객체, 렉시컬 스코프</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/값-식-문-Primitive-Type-Reference-type-Truthy-Falsy/">
+                        <span class="tag">값, 식, 문, Primitive Type, Reference type, Truthy, Falsy</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/내장객체-객체/">
+                        <span class="tag">내장객체, 객체</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/클래스/">
+                        <span class="tag">클래스</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/프로토타입-생성자-객체지향-인스턴스/">
+                        <span class="tag">프로토타입, 생성자, 객체지향, 인스턴스</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/함수-클로저-this바뀌치기/">
+                        <span class="tag">함수, 클로저, this바뀌치기</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
 
             </div>
-        
-        
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Type Ahead" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 RAI KIM&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
     </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
 
-        
-        
-<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
-        <!--SCRIPTS-->
-<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
-<!--SCRIPTS END-->
 
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
     
 
 
+<script src="/js/main.js" defer></script>
 
-    </body>
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
 </html>

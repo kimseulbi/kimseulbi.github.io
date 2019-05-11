@@ -1,485 +1,1086 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="RAI TIL">
-    <title>Playing with CSS Variables and JS - RAI TIL</title>
-    <meta name="author" content="RAI KIM">
-    
-        <meta name="keywords" content="블로그, blog, seulbi, @seulbikim, javascript, web, developer, node.js, HTML, CSS, SCSS, frontend,">
-    
-    
-    
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"RAI KIM","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"Playing with CSS Variables and JS12345678910111213141516171819202122232425262728293031&lt;!-- HTML --&gt;&lt;h2&gt;Update CSS Variables with &lt;span class=\"hl\"&gt;JS&lt;/span&gt;&lt;/h2&gt;&lt;div class=\"controls\"&gt;  &lt;label for=\"spacing\"&gt;Spacing:&lt;/label&gt;  &lt;input    id=\"spacing\"    type=\"range\"    name=\"spacing\"    min=\"10\"    max=\"200\"    value=\"10\"    data-sizing=\"px\"  /&gt;  &lt;label for=\"blur\"&gt;Blur:&lt;/label&gt;  &lt;input    id=\"blur\"    type=\"range\"    name=\"blur\"    min=\"0\"    max=\"25\"    value=\"0\"    data-sizing=\"px\"  /&gt;  &lt;label for=\"base\"&gt;Base Color&lt;/label&gt;  &lt;input id=\"base\" type=\"color\" name=\"base\" value=\"#ffc600\" /&gt;&lt;/div&gt;&lt;img src=\"https://source.unsplash.com/7bwQXzbF6KE/800x500\" /&gt;\n12345678910111213141516/* css */:root &#123;  --base: #ffc600;  --spacing: 10px;  --blur: 0px;&#125;img &#123;  padding: var(--spacing);  background: var(--base);  filter: blur(var(--blur));&#125;.hl &#123;  color: var(--base);&#125;\nelement.style.setProperty(property, value)setProperty() 메소드를 사용하여 자바스크립트에서 css커스텀 속성을 읽고 쓸 수 있습니다.\n12345678910const inputs = document.querySelectorAll(\".controls input\");// input range의 변화값 값 인지function handleUpdate(e) &#123;  const suffix = e.dataset.sizing || \"\";  document.documentElement.style.setProperty(`--$&#123;e.name&#125;`,e.value + suffix);&#125;inputs.forEach(input =&gt; input.addEventListener(\"change\", handleUpdate));inputs.forEach(input =&gt; input.addEventListener(\"mousemove\", handleUpdate));\n","dateCreated":"2019-04-06T21:16:22+09:00","dateModified":"2019-04-06T23:16:17+09:00","datePublished":"2019-04-06T21:16:22+09:00","description":"","headline":"Playing with CSS Variables and JS","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://kimseulbi.github.io/2019/04/06/Playing with CSS Variables and JS/"},"publisher":{"@type":"Organization","name":"RAI KIM","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"https://kimseulbi.github.io/2019/04/06/Playing with CSS Variables and JS/"}</script>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>Playing with CSS Variables and JS - RAI TIL</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
     <meta name="description" content="Playing with CSS Variables and JS12345678910111213141516171819202122232425262728293031&amp;lt;!-- HTML --&amp;gt;&amp;lt;h2&amp;gt;Update CSS Variables with &amp;lt;span class=&quot;hl&quot;&amp;gt;JS&amp;lt;/span&amp;gt;&amp;lt;/h2&amp;gt;&amp;lt;div cl">
 <meta name="keywords" content="블로그, blog, seulbi, @seulbikim, javascript, web, developer, node.js, HTML, CSS, SCSS, frontend">
-<meta property="og:type" content="blog">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Playing with CSS Variables and JS">
 <meta property="og:url" content="https://kimseulbi.github.io/2019/04/06/Playing with CSS Variables and JS/index.html">
 <meta property="og:site_name" content="RAI TIL">
 <meta property="og:description" content="Playing with CSS Variables and JS12345678910111213141516171819202122232425262728293031&amp;lt;!-- HTML --&amp;gt;&amp;lt;h2&amp;gt;Update CSS Variables with &amp;lt;span class=&quot;hl&quot;&amp;gt;JS&amp;lt;/span&amp;gt;&amp;lt;/h2&amp;gt;&amp;lt;div cl">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://kimseulbi.github.io/images/og_image.png">
 <meta property="og:updated_time" content="2019-04-06T14:16:17.926Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Playing with CSS Variables and JS">
 <meta name="twitter:description" content="Playing with CSS Variables and JS12345678910111213141516171819202122232425262728293031&amp;lt;!-- HTML --&amp;gt;&amp;lt;h2&amp;gt;Update CSS Variables with &amp;lt;span class=&quot;hl&quot;&amp;gt;JS&amp;lt;/span&amp;gt;&amp;lt;/h2&amp;gt;&amp;lt;div cl">
+<meta name="twitter:image" content="https://kimseulbi.github.io/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
     
     
-        
     
-    
-    
-    
-    
-    <!--STYLES-->
-    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
-    <!--STYLES END-->
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
     
 
     
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
 </head>
-
-    <body>
-        <div id="blog">
-            <!-- Define author's picture -->
-
-
-    
-
-<header id="header" data-behavior="4">
-    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
-    <div class="header-title">
-        <a class="header-title-link" href="/ ">RAI TIL</a>
-    </div>
-    
-        
-            <a class="header-right-picture " href="#about">
-        
-        
-        </a>
-    
-</header>
-
-            <!-- Define author's picture -->
-
-
-<nav id="sidebar" data-behavior="4">
-    <div class="sidebar-container">
-        
-        
-            <ul class="sidebar-buttons">
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
             
-                <li class="sidebar-button">
+                <img src="/images/logo.svg" alt="Playing with CSS Variables and JS" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
                     
-                        <a class="sidebar-button-link " href="https://kimseulbi.github.io/" title="Home">
                     
-                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Home</span>
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
                     </a>
-            </li>
-            
-                <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
-                    
-                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
-                    
-                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Tags</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
-                    
-                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link open-algolia-search" href="#search" title="Search">
-                    
-                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Search</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="#about" title="About">
-                    
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
-                    
-                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">GitHub</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
-                    
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
-                    
-                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Twitter</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-                    
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google +">
-                    
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google +</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
-                    
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/mailto" title="Mail">
-                    
-                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Mail</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
-                    
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
     </div>
 </nav>
-
-            
-            <div id="main" data-behavior="4"
-                 class="
-                        hasCoverMetaIn
-                        ">
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-04-06T12:16:22.000Z">2019-04-06</time>
                 
-<article class="post">
-    
-    
-        <div class="post-header main-content-wrap text-left">
-    
-        <h1 class="post-title">
-            Playing with CSS Variables and JS
-        </h1>
-    
-    
-        <div class="post-meta">
-    <time datetime="2019-04-06T21:16:22+09:00">
-	
-		    Apr 06, 2019
-    	
-    </time>
-    
-</div>
-
-    
-</div>
-
-    
-    <div class="post-content markdown">
-        <div class="main-content-wrap">
-            <h2 id="Playing-with-CSS-Variables-and-JS"><a href="#Playing-with-CSS-Variables-and-JS" class="headerlink" title="Playing with CSS Variables and JS"></a>Playing with CSS Variables and JS</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Update CSS Variables with <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"hl"</span>&gt;</span>JS<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"controls"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"spacing"</span>&gt;</span>Spacing:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">    <span class="attr">id</span>=<span class="string">"spacing"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">type</span>=<span class="string">"range"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">name</span>=<span class="string">"spacing"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">min</span>=<span class="string">"10"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">max</span>=<span class="string">"200"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">value</span>=<span class="string">"10"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-sizing</span>=<span class="string">"px"</span></span></span><br><span class="line"><span class="tag">  /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"blur"</span>&gt;</span>Blur:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">    <span class="attr">id</span>=<span class="string">"blur"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">type</span>=<span class="string">"range"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">name</span>=<span class="string">"blur"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">min</span>=<span class="string">"0"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">max</span>=<span class="string">"25"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">value</span>=<span class="string">"0"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-sizing</span>=<span class="string">"px"</span></span></span><br><span class="line"><span class="tag">  /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"base"</span>&gt;</span>Base Color<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"base"</span> <span class="attr">type</span>=<span class="string">"color"</span> <span class="attr">name</span>=<span class="string">"base"</span> <span class="attr">value</span>=<span class="string">"#ffc600"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://source.unsplash.com/7bwQXzbF6KE/800x500"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* css */</span></span><br><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attribute">--base</span>: <span class="number">#ffc600</span>;</span><br><span class="line">  <span class="attribute">--spacing</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">--blur</span>: <span class="number">0px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="built_in">var</span>(--spacing);</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">var</span>(--base);</span><br><span class="line">  <span class="attribute">filter</span>: <span class="built_in">blur</span>(var(--blur));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.hl</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">var</span>(--base);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>element.style.setProperty(property, value)</code>setProperty() 메소드를 사용하여 자바스크립트에서 css커스텀 속성을 읽고 쓸 수 있습니다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> inputs = <span class="built_in">document</span>.querySelectorAll(<span class="string">".controls input"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// input range의 변화값 값 인지</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleUpdate</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> suffix = e.dataset.sizing || <span class="string">""</span>;</span><br><span class="line">  <span class="built_in">document</span>.documentElement.style.setProperty(<span class="string">`--<span class="subst">$&#123;e.name&#125;</span>`</span>,e.value + suffix);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">inputs.forEach(<span class="function"><span class="params">input</span> =&gt;</span> input.addEventListener(<span class="string">"change"</span>, handleUpdate));</span><br><span class="line">inputs.forEach(<span class="function"><span class="params">input</span> =&gt;</span> input.addEventListener(<span class="string">"mousemove"</span>, handleUpdate));</span><br></pre></td></tr></table></figure>
-
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 125 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
+                Playing with CSS Variables and JS
+            
+        </h1>
+        <div class="content">
+            <h2 id="Playing-with-CSS-Variables-and-JS"><a href="#Playing-with-CSS-Variables-and-JS" class="headerlink" title="Playing with CSS Variables and JS"></a>Playing with CSS Variables and JS</h2><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">&lt;!-- HTML --&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Update CSS Variables with <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hl"</span>&gt;</span>JS<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"controls"</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"spacing"</span>&gt;</span>Spacing:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">id</span>=<span class="hljs-string">"spacing"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">type</span>=<span class="hljs-string">"range"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">name</span>=<span class="hljs-string">"spacing"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">min</span>=<span class="hljs-string">"10"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">max</span>=<span class="hljs-string">"200"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">value</span>=<span class="hljs-string">"10"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">data-sizing</span>=<span class="hljs-string">"px"</span></span></span><br><span class="line"><span class="hljs-tag">  /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"blur"</span>&gt;</span>Blur:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">id</span>=<span class="hljs-string">"blur"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">type</span>=<span class="hljs-string">"range"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">name</span>=<span class="hljs-string">"blur"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">min</span>=<span class="hljs-string">"0"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">max</span>=<span class="hljs-string">"25"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">value</span>=<span class="hljs-string">"0"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">data-sizing</span>=<span class="hljs-string">"px"</span></span></span><br><span class="line"><span class="hljs-tag">  /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"base"</span>&gt;</span>Base Color<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span></span><br><span class="line">  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"base"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"color"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"base"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"#ffc600"</span> /&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://source.unsplash.com/7bwQXzbF6KE/800x500"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* css */</span></span><br><span class="line"><span class="hljs-selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">--base</span>: <span class="hljs-number">#ffc600</span>;</span><br><span class="line">  <span class="hljs-attribute">--spacing</span>: <span class="hljs-number">10px</span>;</span><br><span class="line">  <span class="hljs-attribute">--blur</span>: <span class="hljs-number">0px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-selector-tag">img</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">padding</span>: <span class="hljs-built_in">var</span>(--spacing);</span><br><span class="line">  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">var</span>(--base);</span><br><span class="line">  <span class="hljs-attribute">filter</span>: <span class="hljs-built_in">blur</span>(var(--blur));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-selector-class">.hl</span> &#123;</span><br><span class="line">  <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--base);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>element.style.setProperty(property, value)</code>setProperty() 메소드를 사용하여 자바스크립트에서 css커스텀 속성을 읽고 쓸 수 있습니다.</p>
+<figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> inputs = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">".controls input"</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// input range의 변화값 값 인지</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handleUpdate</span>(<span class="hljs-params">e</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">const</span> suffix = e.dataset.sizing || <span class="hljs-string">""</span>;</span><br><span class="line">  <span class="hljs-built_in">document</span>.documentElement.style.setProperty(<span class="hljs-string">`--<span class="hljs-subst">$&#123;e.name&#125;</span>`</span>,e.value + suffix);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">inputs.forEach(<span class="hljs-function"><span class="hljs-params">input</span> =&gt;</span> input.addEventListener(<span class="hljs-string">"change"</span>, handleUpdate));</span><br><span class="line">inputs.forEach(<span class="hljs-function"><span class="hljs-params">input</span> =&gt;</span> input.addEventListener(<span class="hljs-string">"mousemove"</span>, handleUpdate));</span><br></pre></td></tr></table></figure>
 
         </div>
+        
+        
+        
     </div>
-    <div id="post-footer" class="post-footer main-content-wrap">
-        
-        
-            <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/06/5주차예습과제/" data-tooltip="JAVASCRIPT 스터디 5주차 예습" aria-label="PREVIOUS: JAVASCRIPT 스터디 5주차 예습">
-                
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/31/ArrayCardioDay1/" data-tooltip="JS30 Array Cardio Day 1" aria-label="NEXT: JS30 Array Cardio Day 1">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
-                <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </a>
-        </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/04/06/Playing with CSS Variables and JS/" title="Share on Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/04/06/Playing with CSS Variables and JS/" title="Share on Twitter">
-                    <i class="fab fa-twitter" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/04/06/Playing with CSS Variables and JS/" title="Share on Google+">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-        
-            
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
-            
-                <i class="fa fa-list" aria-hidden="true"></i>
-            </a>
-        </li>
-    </ul>
 </div>
 
 
-        
-        
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
             
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/04/06/5주차예습과제/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">JAVASCRIPT 스터디 5주차 예습</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/03/31/ArrayCardioDay1/">
+                <span class="level-item">JS30 Array Cardio Day 1</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
         
     </div>
-</article>
+</div>
+
+
+</div>
+                
 
 
 
-                <footer id="footer" class="main-content-wrap">
-    <span class="copyrights">
-        Copyrights &copy; 2019 RAI KIM. All Rights Reserved.
-    </span>
-</footer>
 
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="Your name">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Your name
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Your title
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Your location</span>
+                    </p>
+                    
+                </div>
             </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        17
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        10
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
             
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
-                    <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/ppoffice">
                 
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/06/5주차예습과제/" data-tooltip="JAVASCRIPT 스터디 5주차 예습" aria-label="PREVIOUS: JAVASCRIPT 스터디 5주차 예습">
+                <i class="fab fa-github"></i>
                 
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
                 </a>
             </li>
-            <li class="post-action">
-                
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/31/ArrayCardioDay1/" data-tooltip="JS30 Array Cardio Day 1" aria-label="NEXT: JS30 Array Cardio Day 1">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
                 </a>
             </li>
+        
         </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
-                <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </a>
-        </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/04/06/Playing with CSS Variables and JS/" title="Share on Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/04/06/Playing with CSS Variables and JS/" title="Share on Twitter">
-                    <i class="fab fa-twitter" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/04/06/Playing with CSS Variables and JS/" title="Share on Google+">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-        
-            
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
-            
-                <i class="fa fa-list" aria-hidden="true"></i>
-            </a>
-        </li>
-    </ul>
+        </div>
+    </div>
 </div>
 
 
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/Grammar-Type-Primitive-Reference-Value-Expression-Statement-Memory-Truthy-Falsy-Scope/" style="font-size: 10px;">Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy & Falsy, Scope</a> <a href="/tags/Hexo-블로그-Markdown/" style="font-size: 10px;">Hexo, 블로그, Markdown</a> <a href="/tags/JAVASCRIPT-Object-객체-Prototype/" style="font-size: 10px;">JAVASCRIPT, Object, 객체, Prototype</a> <a href="/tags/JS30/" style="font-size: 10px;">JS30</a> <a href="/tags/값-더-알아보기-JAVASCRIPT-const와-let-비교-var와-let-const-비교-scope-블록스코프-함수스코프-호이스팅-전역변수-전역객체-윈시타입-참조타입-불변성-래처객체-렉시컬-스코프/" style="font-size: 10px;">값 더 알아보기,JAVASCRIPT, const와 let 비교, var와 let,const 비교,scope, 블록스코프, 함수스코프, 호이스팅, 전역변수, 전역객체, 윈시타입, 참조타입, 불변성, 래처객체, 렉시컬 스코프</a> <a href="/tags/값-식-문-Primitive-Type-Reference-type-Truthy-Falsy/" style="font-size: 10px;">값, 식, 문, Primitive Type, Reference type, Truthy, Falsy</a> <a href="/tags/내장객체-객체/" style="font-size: 10px;">내장객체, 객체</a> <a href="/tags/클래스/" style="font-size: 10px;">클래스</a> <a href="/tags/프로토타입-생성자-객체지향-인스턴스/" style="font-size: 10px;">프로토타입, 생성자, 객체지향, 인스턴스</a> <a href="/tags/함수-클로저-this바뀌치기/" style="font-size: 10px;">함수, 클로저, this바뀌치기</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/04/21/FunWithHTML5Canvas/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="FunWithHTML5Canvas">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-20T15:15:13.000Z">2019-04-21</time></div>
+                    <a href="/2019/04/21/FunWithHTML5Canvas/" class="has-link-black-ter is-size-6">FunWithHTML5Canvas</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/20/ArrayCardioDay2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="07_ArrayCardioDay2">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-20T13:57:38.000Z">2019-04-20</time></div>
+                    <a href="/2019/04/20/ArrayCardioDay2/" class="has-link-black-ter is-size-6">07_ArrayCardioDay2</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/18/7주차예습과제/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="JAVASCRIPT 스터디 7주차 예습">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-18T14:13:27.000Z">2019-04-18</time></div>
+                    <a href="/2019/04/18/7주차예습과제/" class="has-link-black-ter is-size-6">JAVASCRIPT 스터디 7주차 예습</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/12/ Type Ahead/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Type Ahead">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-12T12:16:22.000Z">2019-04-12</time></div>
+                    <a href="/2019/04/12/ Type Ahead/" class="has-link-black-ter is-size-6">Type Ahead</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/12/naverthechconcent/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-12T03:43:55.856Z">2019-04-12</time></div>
+                    <a href="/2019/04/12/naverthechconcent/" class="has-link-black-ter is-size-6"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Grammar-Type-Primitive-Reference-Value-Expression-Statement-Memory-Truthy-Falsy-Scope/">
+                        <span class="tag">Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy &amp; Falsy, Scope</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
                 </div>
                 
-    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
-        <i id="btn-close-shareoptions" class="fa fa-times"></i>
-        <ul class="share-options">
-            
-                
-                
-                <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/04/06/Playing with CSS Variables and JS/">
-                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo-블로그-Markdown/">
+                        <span class="tag">Hexo, 블로그, Markdown</span>
+                        <span class="tag is-grey">1</span>
                     </a>
-                </li>
-            
+                </div>
                 
-                
-                <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/04/06/Playing with CSS Variables and JS/">
-                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JAVASCRIPT-Object-객체-Prototype/">
+                        <span class="tag">JAVASCRIPT, Object, 객체, Prototype</span>
+                        <span class="tag is-grey">1</span>
                     </a>
-                </li>
-            
+                </div>
                 
-                
-                <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/04/06/Playing with CSS Variables and JS/">
-                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JS30/">
+                        <span class="tag">JS30</span>
+                        <span class="tag is-grey">1</span>
                     </a>
-                </li>
-            
-        </ul>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/값-더-알아보기-JAVASCRIPT-const와-let-비교-var와-let-const-비교-scope-블록스코프-함수스코프-호이스팅-전역변수-전역객체-윈시타입-참조타입-불변성-래처객체-렉시컬-스코프/">
+                        <span class="tag">값 더 알아보기,JAVASCRIPT, const와 let 비교, var와 let,const 비교,scope, 블록스코프, 함수스코프, 호이스팅, 전역변수, 전역객체, 윈시타입, 참조타입, 불변성, 래처객체, 렉시컬 스코프</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/값-식-문-Primitive-Type-Reference-type-Truthy-Falsy/">
+                        <span class="tag">값, 식, 문, Primitive Type, Reference type, Truthy, Falsy</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/내장객체-객체/">
+                        <span class="tag">내장객체, 객체</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/클래스/">
+                        <span class="tag">클래스</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/프로토타입-생성자-객체지향-인스턴스/">
+                        <span class="tag">프로토타입, 생성자, 객체지향, 인스턴스</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/함수-클로저-this바뀌치기/">
+                        <span class="tag">함수, 클로저, this바뀌치기</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
     </div>
-
-
-            
-        </div>
-        
-
-
-<div id="about">
-    <div id="about-card">
-        <div id="about-btn-close">
-            <i class="fa fa-times"></i>
-        </div>
-        
-            <h4 id="about-card-name">RAI KIM</h4>
-        
-            <div id="about-card-bio"><p>author.bio</p>
 </div>
         
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
         
-            <div id="about-card-job">
-                <i class="fa fa-briefcase"></i>
-                <br>
-                <p>author.job</p>
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/04/21/FunWithHTML5Canvas/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="FunWithHTML5Canvas">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-20T15:15:13.000Z">2019-04-21</time></div>
+                    <a href="/2019/04/21/FunWithHTML5Canvas/" class="has-link-black-ter is-size-6">FunWithHTML5Canvas</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/20/ArrayCardioDay2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="07_ArrayCardioDay2">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-20T13:57:38.000Z">2019-04-20</time></div>
+                    <a href="/2019/04/20/ArrayCardioDay2/" class="has-link-black-ter is-size-6">07_ArrayCardioDay2</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/18/7주차예습과제/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="JAVASCRIPT 스터디 7주차 예습">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-18T14:13:27.000Z">2019-04-18</time></div>
+                    <a href="/2019/04/18/7주차예습과제/" class="has-link-black-ter is-size-6">JAVASCRIPT 스터디 7주차 예습</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/12/ Type Ahead/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Type Ahead">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-12T12:16:22.000Z">2019-04-12</time></div>
+                    <a href="/2019/04/12/ Type Ahead/" class="has-link-black-ter is-size-6">Type Ahead</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/12/naverthechconcent/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-12T03:43:55.856Z">2019-04-12</time></div>
+                    <a href="/2019/04/12/naverthechconcent/" class="has-link-black-ter is-size-6"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Grammar-Type-Primitive-Reference-Value-Expression-Statement-Memory-Truthy-Falsy-Scope/">
+                        <span class="tag">Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy &amp; Falsy, Scope</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo-블로그-Markdown/">
+                        <span class="tag">Hexo, 블로그, Markdown</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JAVASCRIPT-Object-객체-Prototype/">
+                        <span class="tag">JAVASCRIPT, Object, 객체, Prototype</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JS30/">
+                        <span class="tag">JS30</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/값-더-알아보기-JAVASCRIPT-const와-let-비교-var와-let-const-비교-scope-블록스코프-함수스코프-호이스팅-전역변수-전역객체-윈시타입-참조타입-불변성-래처객체-렉시컬-스코프/">
+                        <span class="tag">값 더 알아보기,JAVASCRIPT, const와 let 비교, var와 let,const 비교,scope, 블록스코프, 함수스코프, 호이스팅, 전역변수, 전역객체, 윈시타입, 참조타입, 불변성, 래처객체, 렉시컬 스코프</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/값-식-문-Primitive-Type-Reference-type-Truthy-Falsy/">
+                        <span class="tag">값, 식, 문, Primitive Type, Reference type, Truthy, Falsy</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/내장객체-객체/">
+                        <span class="tag">내장객체, 객체</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/클래스/">
+                        <span class="tag">클래스</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/프로토타입-생성자-객체지향-인스턴스/">
+                        <span class="tag">프로토타입, 생성자, 객체지향, 인스턴스</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/함수-클로저-this바뀌치기/">
+                        <span class="tag">함수, 클로저, this바뀌치기</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
 
             </div>
-        
-        
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Playing with CSS Variables and JS" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 RAI KIM&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
     </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
 
-        
-        
-<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
-        <!--SCRIPTS-->
-<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
-<!--SCRIPTS END-->
 
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
     
 
 
+<script src="/js/main.js" defer></script>
 
-    </body>
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
 </html>

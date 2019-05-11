@@ -1,482 +1,1083 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="RAI TIL">
-    <title>JS30 Array Cardio Day 1 - RAI TIL</title>
-    <meta name="author" content="RAI KIM">
-    
-        <meta name="keywords" content="블로그, blog, seulbi, @seulbikim, javascript, web, developer, node.js, HTML, CSS, SCSS, frontend,">
-    
-    
-    
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"RAI KIM","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"123456789101112131415161718192021222324const inventors = &#123;    &#123; first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 &#125;,    &#123; first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 &#125;,    &#123; first: 'Galileo', last: 'Galilei', year: 1564, passed: 1642 &#125;,    &#123; first: 'Marie', last: 'Curie', year: 1867, passed: 1934 &#125;,    &#123; first: 'Johannes', last: 'Kepler', year: 1571, passed: 1630 &#125;,    &#123; first: 'Nicolaus', last: 'Copernicus', year: 1473, passed: 1543 &#125;,    &#123; first: 'Max', last: 'Planck', year: 1858, passed: 1947 &#125;,    &#123; first: 'Katherine', last: 'Blodgett', year: 1898, passed: 1979 &#125;,    &#123; first: 'Ada', last: 'Lovelace', year: 1815, passed: 1852 &#125;,    &#123; first: 'Sarah E.', last: 'Goode', year: 1855, passed: 1905 &#125;,    &#123; first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 &#125;,    &#123; first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 &#125;&#125;    const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];    // 1500년도 보다 크거나 같고 1600보다 작은 데이터 필터    // filter메소드: 배열에서 원하는 요소만 골라내어 새로운 배열을 생성    // 진리값을 반황하는 함수를 주어야 합니다.    // (현재 요소, 인덱스, 배열)의 세인수를 받습니다.    let fifteen = inventors.filter(inventor =&gt; (inventor.year &gt;= 1500 &amp;&amp; inventor.year &lt; 1600));    cosole.table(fifteen);\n","dateCreated":"2019-03-31T21:16:22+09:00","dateModified":"2019-03-31T03:00:56+09:00","datePublished":"2019-03-31T21:16:22+09:00","description":"","headline":"JS30 Array Cardio Day 1","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://kimseulbi.github.io/2019/03/31/ArrayCardioDay1/"},"publisher":{"@type":"Organization","name":"RAI KIM","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"https://kimseulbi.github.io/2019/03/31/ArrayCardioDay1/"}</script>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>JS30 Array Cardio Day 1 - RAI TIL</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
     <meta name="description" content="123456789101112131415161718192021222324const inventors = &amp;#123;    &amp;#123; first: &apos;Albert&apos;, last: &apos;Einstein&apos;, year: 1879, passed: 1955 &amp;#125;,    &amp;#123; first: &apos;Isaac&apos;, last: &apos;Newton&apos;, year: 1643, pass">
 <meta name="keywords" content="블로그, blog, seulbi, @seulbikim, javascript, web, developer, node.js, HTML, CSS, SCSS, frontend">
-<meta property="og:type" content="blog">
+<meta property="og:type" content="article">
 <meta property="og:title" content="JS30 Array Cardio Day 1">
 <meta property="og:url" content="https://kimseulbi.github.io/2019/03/31/ArrayCardioDay1/index.html">
 <meta property="og:site_name" content="RAI TIL">
 <meta property="og:description" content="123456789101112131415161718192021222324const inventors = &amp;#123;    &amp;#123; first: &apos;Albert&apos;, last: &apos;Einstein&apos;, year: 1879, passed: 1955 &amp;#125;,    &amp;#123; first: &apos;Isaac&apos;, last: &apos;Newton&apos;, year: 1643, pass">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://kimseulbi.github.io/images/og_image.png">
 <meta property="og:updated_time" content="2019-03-30T18:00:56.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS30 Array Cardio Day 1">
 <meta name="twitter:description" content="123456789101112131415161718192021222324const inventors = &amp;#123;    &amp;#123; first: &apos;Albert&apos;, last: &apos;Einstein&apos;, year: 1879, passed: 1955 &amp;#125;,    &amp;#123; first: &apos;Isaac&apos;, last: &apos;Newton&apos;, year: 1643, pass">
+<meta name="twitter:image" content="https://kimseulbi.github.io/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
     
     
-        
     
-    
-    
-    
-    
-    <!--STYLES-->
-    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
-    <!--STYLES END-->
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
     
 
     
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
 </head>
-
-    <body>
-        <div id="blog">
-            <!-- Define author's picture -->
-
-
-    
-
-<header id="header" data-behavior="4">
-    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
-    <div class="header-title">
-        <a class="header-title-link" href="/ ">RAI TIL</a>
-    </div>
-    
-        
-            <a class="header-right-picture " href="#about">
-        
-        
-        </a>
-    
-</header>
-
-            <!-- Define author's picture -->
-
-
-<nav id="sidebar" data-behavior="4">
-    <div class="sidebar-container">
-        
-        
-            <ul class="sidebar-buttons">
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
             
-                <li class="sidebar-button">
+                <img src="/images/logo.svg" alt="JS30 Array Cardio Day 1" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
                     
-                        <a class="sidebar-button-link " href="https://kimseulbi.github.io/" title="Home">
                     
-                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Home</span>
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
                     </a>
-            </li>
-            
-                <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
-                    
-                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
-                    
-                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Tags</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
-                    
-                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link open-algolia-search" href="#search" title="Search">
-                    
-                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Search</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="#about" title="About">
-                    
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
-                    
-                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">GitHub</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
-                    
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
-                    
-                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Twitter</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-                    
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google +">
-                    
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google +</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
-                    
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/mailto" title="Mail">
-                    
-                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Mail</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
-                    
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
     </div>
 </nav>
-
-            
-            <div id="main" data-behavior="4"
-                 class="
-                        hasCoverMetaIn
-                        ">
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-03-31T12:16:22.000Z">2019-03-31</time>
                 
-<article class="post">
-    
-    
-        <div class="post-header main-content-wrap text-left">
-    
-        <h1 class="post-title">
-            JS30 Array Cardio Day 1
-        </h1>
-    
-    
-        <div class="post-meta">
-    <time datetime="2019-03-31T21:16:22+09:00">
-	
-		    Mar 31, 2019
-    	
-    </time>
-    
-</div>
-
-    
-</div>
-
-    
-    <div class="post-content markdown">
-        <div class="main-content-wrap">
-            <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> inventors = &#123;</span><br><span class="line">    &#123; <span class="attr">first</span>: <span class="string">'Albert'</span>, <span class="attr">last</span>: <span class="string">'Einstein'</span>, <span class="attr">year</span>: <span class="number">1879</span>, <span class="attr">passed</span>: <span class="number">1955</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">first</span>: <span class="string">'Isaac'</span>, <span class="attr">last</span>: <span class="string">'Newton'</span>, <span class="attr">year</span>: <span class="number">1643</span>, <span class="attr">passed</span>: <span class="number">1727</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">first</span>: <span class="string">'Galileo'</span>, <span class="attr">last</span>: <span class="string">'Galilei'</span>, <span class="attr">year</span>: <span class="number">1564</span>, <span class="attr">passed</span>: <span class="number">1642</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">first</span>: <span class="string">'Marie'</span>, <span class="attr">last</span>: <span class="string">'Curie'</span>, <span class="attr">year</span>: <span class="number">1867</span>, <span class="attr">passed</span>: <span class="number">1934</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">first</span>: <span class="string">'Johannes'</span>, <span class="attr">last</span>: <span class="string">'Kepler'</span>, <span class="attr">year</span>: <span class="number">1571</span>, <span class="attr">passed</span>: <span class="number">1630</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">first</span>: <span class="string">'Nicolaus'</span>, <span class="attr">last</span>: <span class="string">'Copernicus'</span>, <span class="attr">year</span>: <span class="number">1473</span>, <span class="attr">passed</span>: <span class="number">1543</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">first</span>: <span class="string">'Max'</span>, <span class="attr">last</span>: <span class="string">'Planck'</span>, <span class="attr">year</span>: <span class="number">1858</span>, <span class="attr">passed</span>: <span class="number">1947</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">first</span>: <span class="string">'Katherine'</span>, <span class="attr">last</span>: <span class="string">'Blodgett'</span>, <span class="attr">year</span>: <span class="number">1898</span>, <span class="attr">passed</span>: <span class="number">1979</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">first</span>: <span class="string">'Ada'</span>, <span class="attr">last</span>: <span class="string">'Lovelace'</span>, <span class="attr">year</span>: <span class="number">1815</span>, <span class="attr">passed</span>: <span class="number">1852</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">first</span>: <span class="string">'Sarah E.'</span>, <span class="attr">last</span>: <span class="string">'Goode'</span>, <span class="attr">year</span>: <span class="number">1855</span>, <span class="attr">passed</span>: <span class="number">1905</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">first</span>: <span class="string">'Lise'</span>, <span class="attr">last</span>: <span class="string">'Meitner'</span>, <span class="attr">year</span>: <span class="number">1878</span>, <span class="attr">passed</span>: <span class="number">1968</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">first</span>: <span class="string">'Hanna'</span>, <span class="attr">last</span>: <span class="string">'Hammarström'</span>, <span class="attr">year</span>: <span class="number">1829</span>, <span class="attr">passed</span>: <span class="number">1909</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> people = [<span class="string">'Beck, Glenn'</span>, <span class="string">'Becker, Carl'</span>, <span class="string">'Beckett, Samuel'</span>, <span class="string">'Beddoes, Mick'</span>, <span class="string">'Beecher, Henry'</span>, <span class="string">'Beethoven, Ludwig'</span>, <span class="string">'Begin, Menachem'</span>, <span class="string">'Belloc, Hilaire'</span>, <span class="string">'Bellow, Saul'</span>, <span class="string">'Benchley, Robert'</span>, <span class="string">'Benenson, Peter'</span>, <span class="string">'Ben-Gurion, David'</span>, <span class="string">'Benjamin, Walter'</span>, <span class="string">'Benn, Tony'</span>, <span class="string">'Bennington, Chester'</span>, <span class="string">'Benson, Leana'</span>, <span class="string">'Bent, Silas'</span>, <span class="string">'Bentsen, Lloyd'</span>, <span class="string">'Berger, Ric'</span>, <span class="string">'Bergman, Ingmar'</span>, <span class="string">'Berio, Luciano'</span>, <span class="string">'Berle, Milton'</span>, <span class="string">'Berlin, Irving'</span>, <span class="string">'Berne, Eric'</span>, <span class="string">'Bernhard, Sandra'</span>, <span class="string">'Berra, Yogi'</span>, <span class="string">'Berry, Halle'</span>, <span class="string">'Berry, Wendell'</span>, <span class="string">'Bethea, Erin'</span>, <span class="string">'Bevan, Aneurin'</span>, <span class="string">'Bevel, Ken'</span>, <span class="string">'Biden, Joseph'</span>, <span class="string">'Bierce, Ambrose'</span>, <span class="string">'Biko, Steve'</span>, <span class="string">'Billings, Josh'</span>, <span class="string">'Biondo, Frank'</span>, <span class="string">'Birrell, Augustine'</span>, <span class="string">'Black, Elk'</span>, <span class="string">'Blair, Robert'</span>, <span class="string">'Blair, Tony'</span>, <span class="string">'Blake, William'</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1500년도 보다 크거나 같고 1600보다 작은 데이터 필터</span></span><br><span class="line">    <span class="comment">// filter메소드: 배열에서 원하는 요소만 골라내어 새로운 배열을 생성</span></span><br><span class="line">    <span class="comment">// 진리값을 반황하는 함수를 주어야 합니다.</span></span><br><span class="line">    <span class="comment">// (현재 요소, 인덱스, 배열)의 세인수를 받습니다.</span></span><br><span class="line">    <span class="keyword">let</span> fifteen = inventors.filter(<span class="function"><span class="params">inventor</span> =&gt;</span> (inventor.year &gt;= <span class="number">1500</span> &amp;&amp; inventor.year &lt; <span class="number">1600</span>));</span><br><span class="line"></span><br><span class="line">    cosole.table(fifteen);</span><br></pre></td></tr></table></figure>
-
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 253 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
+                JS30 Array Cardio Day 1
+            
+        </h1>
+        <div class="content">
+            <figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> inventors = &#123;</span><br><span class="line">    &#123; <span class="hljs-attr">first</span>: <span class="hljs-string">'Albert'</span>, <span class="hljs-attr">last</span>: <span class="hljs-string">'Einstein'</span>, <span class="hljs-attr">year</span>: <span class="hljs-number">1879</span>, <span class="hljs-attr">passed</span>: <span class="hljs-number">1955</span> &#125;,</span><br><span class="line">    &#123; <span class="hljs-attr">first</span>: <span class="hljs-string">'Isaac'</span>, <span class="hljs-attr">last</span>: <span class="hljs-string">'Newton'</span>, <span class="hljs-attr">year</span>: <span class="hljs-number">1643</span>, <span class="hljs-attr">passed</span>: <span class="hljs-number">1727</span> &#125;,</span><br><span class="line">    &#123; <span class="hljs-attr">first</span>: <span class="hljs-string">'Galileo'</span>, <span class="hljs-attr">last</span>: <span class="hljs-string">'Galilei'</span>, <span class="hljs-attr">year</span>: <span class="hljs-number">1564</span>, <span class="hljs-attr">passed</span>: <span class="hljs-number">1642</span> &#125;,</span><br><span class="line">    &#123; <span class="hljs-attr">first</span>: <span class="hljs-string">'Marie'</span>, <span class="hljs-attr">last</span>: <span class="hljs-string">'Curie'</span>, <span class="hljs-attr">year</span>: <span class="hljs-number">1867</span>, <span class="hljs-attr">passed</span>: <span class="hljs-number">1934</span> &#125;,</span><br><span class="line">    &#123; <span class="hljs-attr">first</span>: <span class="hljs-string">'Johannes'</span>, <span class="hljs-attr">last</span>: <span class="hljs-string">'Kepler'</span>, <span class="hljs-attr">year</span>: <span class="hljs-number">1571</span>, <span class="hljs-attr">passed</span>: <span class="hljs-number">1630</span> &#125;,</span><br><span class="line">    &#123; <span class="hljs-attr">first</span>: <span class="hljs-string">'Nicolaus'</span>, <span class="hljs-attr">last</span>: <span class="hljs-string">'Copernicus'</span>, <span class="hljs-attr">year</span>: <span class="hljs-number">1473</span>, <span class="hljs-attr">passed</span>: <span class="hljs-number">1543</span> &#125;,</span><br><span class="line">    &#123; <span class="hljs-attr">first</span>: <span class="hljs-string">'Max'</span>, <span class="hljs-attr">last</span>: <span class="hljs-string">'Planck'</span>, <span class="hljs-attr">year</span>: <span class="hljs-number">1858</span>, <span class="hljs-attr">passed</span>: <span class="hljs-number">1947</span> &#125;,</span><br><span class="line">    &#123; <span class="hljs-attr">first</span>: <span class="hljs-string">'Katherine'</span>, <span class="hljs-attr">last</span>: <span class="hljs-string">'Blodgett'</span>, <span class="hljs-attr">year</span>: <span class="hljs-number">1898</span>, <span class="hljs-attr">passed</span>: <span class="hljs-number">1979</span> &#125;,</span><br><span class="line">    &#123; <span class="hljs-attr">first</span>: <span class="hljs-string">'Ada'</span>, <span class="hljs-attr">last</span>: <span class="hljs-string">'Lovelace'</span>, <span class="hljs-attr">year</span>: <span class="hljs-number">1815</span>, <span class="hljs-attr">passed</span>: <span class="hljs-number">1852</span> &#125;,</span><br><span class="line">    &#123; <span class="hljs-attr">first</span>: <span class="hljs-string">'Sarah E.'</span>, <span class="hljs-attr">last</span>: <span class="hljs-string">'Goode'</span>, <span class="hljs-attr">year</span>: <span class="hljs-number">1855</span>, <span class="hljs-attr">passed</span>: <span class="hljs-number">1905</span> &#125;,</span><br><span class="line">    &#123; <span class="hljs-attr">first</span>: <span class="hljs-string">'Lise'</span>, <span class="hljs-attr">last</span>: <span class="hljs-string">'Meitner'</span>, <span class="hljs-attr">year</span>: <span class="hljs-number">1878</span>, <span class="hljs-attr">passed</span>: <span class="hljs-number">1968</span> &#125;,</span><br><span class="line">    &#123; <span class="hljs-attr">first</span>: <span class="hljs-string">'Hanna'</span>, <span class="hljs-attr">last</span>: <span class="hljs-string">'Hammarström'</span>, <span class="hljs-attr">year</span>: <span class="hljs-number">1829</span>, <span class="hljs-attr">passed</span>: <span class="hljs-number">1909</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">const</span> people = [<span class="hljs-string">'Beck, Glenn'</span>, <span class="hljs-string">'Becker, Carl'</span>, <span class="hljs-string">'Beckett, Samuel'</span>, <span class="hljs-string">'Beddoes, Mick'</span>, <span class="hljs-string">'Beecher, Henry'</span>, <span class="hljs-string">'Beethoven, Ludwig'</span>, <span class="hljs-string">'Begin, Menachem'</span>, <span class="hljs-string">'Belloc, Hilaire'</span>, <span class="hljs-string">'Bellow, Saul'</span>, <span class="hljs-string">'Benchley, Robert'</span>, <span class="hljs-string">'Benenson, Peter'</span>, <span class="hljs-string">'Ben-Gurion, David'</span>, <span class="hljs-string">'Benjamin, Walter'</span>, <span class="hljs-string">'Benn, Tony'</span>, <span class="hljs-string">'Bennington, Chester'</span>, <span class="hljs-string">'Benson, Leana'</span>, <span class="hljs-string">'Bent, Silas'</span>, <span class="hljs-string">'Bentsen, Lloyd'</span>, <span class="hljs-string">'Berger, Ric'</span>, <span class="hljs-string">'Bergman, Ingmar'</span>, <span class="hljs-string">'Berio, Luciano'</span>, <span class="hljs-string">'Berle, Milton'</span>, <span class="hljs-string">'Berlin, Irving'</span>, <span class="hljs-string">'Berne, Eric'</span>, <span class="hljs-string">'Bernhard, Sandra'</span>, <span class="hljs-string">'Berra, Yogi'</span>, <span class="hljs-string">'Berry, Halle'</span>, <span class="hljs-string">'Berry, Wendell'</span>, <span class="hljs-string">'Bethea, Erin'</span>, <span class="hljs-string">'Bevan, Aneurin'</span>, <span class="hljs-string">'Bevel, Ken'</span>, <span class="hljs-string">'Biden, Joseph'</span>, <span class="hljs-string">'Bierce, Ambrose'</span>, <span class="hljs-string">'Biko, Steve'</span>, <span class="hljs-string">'Billings, Josh'</span>, <span class="hljs-string">'Biondo, Frank'</span>, <span class="hljs-string">'Birrell, Augustine'</span>, <span class="hljs-string">'Black, Elk'</span>, <span class="hljs-string">'Blair, Robert'</span>, <span class="hljs-string">'Blair, Tony'</span>, <span class="hljs-string">'Blake, William'</span>];</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">// 1500년도 보다 크거나 같고 1600보다 작은 데이터 필터</span></span><br><span class="line">    <span class="hljs-comment">// filter메소드: 배열에서 원하는 요소만 골라내어 새로운 배열을 생성</span></span><br><span class="line">    <span class="hljs-comment">// 진리값을 반황하는 함수를 주어야 합니다.</span></span><br><span class="line">    <span class="hljs-comment">// (현재 요소, 인덱스, 배열)의 세인수를 받습니다.</span></span><br><span class="line">    <span class="hljs-keyword">let</span> fifteen = inventors.filter(<span class="hljs-function"><span class="hljs-params">inventor</span> =&gt;</span> (inventor.year &gt;= <span class="hljs-number">1500</span> &amp;&amp; inventor.year &lt; <span class="hljs-number">1600</span>));</span><br><span class="line"></span><br><span class="line">    cosole.table(fifteen);</span><br></pre></td></tr></table></figure>
 
         </div>
+        
+        
+        
     </div>
-    <div id="post-footer" class="post-footer main-content-wrap">
-        
-        
-            <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/06/Playing with CSS Variables and JS/" data-tooltip="Playing with CSS Variables and JS" aria-label="PREVIOUS: Playing with CSS Variables and JS">
-                
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/29/4주차예습과제/" data-tooltip="JAVASCRIPT 스터디 4주차 예습" aria-label="NEXT: JAVASCRIPT 스터디 4주차 예습">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
-                <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </a>
-        </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/03/31/ArrayCardioDay1/" title="Share on Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/03/31/ArrayCardioDay1/" title="Share on Twitter">
-                    <i class="fab fa-twitter" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/03/31/ArrayCardioDay1/" title="Share on Google+">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-        
-            
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
-            
-                <i class="fa fa-list" aria-hidden="true"></i>
-            </a>
-        </li>
-    </ul>
 </div>
 
 
-        
-        
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
             
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/04/06/Playing with CSS Variables and JS/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Playing with CSS Variables and JS</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/03/29/4주차예습과제/">
+                <span class="level-item">JAVASCRIPT 스터디 4주차 예습</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
         
     </div>
-</article>
+</div>
+
+
+</div>
+                
 
 
 
-                <footer id="footer" class="main-content-wrap">
-    <span class="copyrights">
-        Copyrights &copy; 2019 RAI KIM. All Rights Reserved.
-    </span>
-</footer>
 
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="Your name">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Your name
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Your title
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Your location</span>
+                    </p>
+                    
+                </div>
             </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        17
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        10
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
             
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
-                    <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/ppoffice">
                 
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/06/Playing with CSS Variables and JS/" data-tooltip="Playing with CSS Variables and JS" aria-label="PREVIOUS: Playing with CSS Variables and JS">
+                <i class="fab fa-github"></i>
                 
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
                 </a>
             </li>
-            <li class="post-action">
-                
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/29/4주차예습과제/" data-tooltip="JAVASCRIPT 스터디 4주차 예습" aria-label="NEXT: JAVASCRIPT 스터디 4주차 예습">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
                 </a>
             </li>
+        
         </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
-                <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </a>
-        </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/03/31/ArrayCardioDay1/" title="Share on Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/03/31/ArrayCardioDay1/" title="Share on Twitter">
-                    <i class="fab fa-twitter" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/03/31/ArrayCardioDay1/" title="Share on Google+">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-        
-            
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
-            
-                <i class="fa fa-list" aria-hidden="true"></i>
-            </a>
-        </li>
-    </ul>
+        </div>
+    </div>
 </div>
 
 
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/Grammar-Type-Primitive-Reference-Value-Expression-Statement-Memory-Truthy-Falsy-Scope/" style="font-size: 10px;">Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy & Falsy, Scope</a> <a href="/tags/Hexo-블로그-Markdown/" style="font-size: 10px;">Hexo, 블로그, Markdown</a> <a href="/tags/JAVASCRIPT-Object-객체-Prototype/" style="font-size: 10px;">JAVASCRIPT, Object, 객체, Prototype</a> <a href="/tags/JS30/" style="font-size: 10px;">JS30</a> <a href="/tags/값-더-알아보기-JAVASCRIPT-const와-let-비교-var와-let-const-비교-scope-블록스코프-함수스코프-호이스팅-전역변수-전역객체-윈시타입-참조타입-불변성-래처객체-렉시컬-스코프/" style="font-size: 10px;">값 더 알아보기,JAVASCRIPT, const와 let 비교, var와 let,const 비교,scope, 블록스코프, 함수스코프, 호이스팅, 전역변수, 전역객체, 윈시타입, 참조타입, 불변성, 래처객체, 렉시컬 스코프</a> <a href="/tags/값-식-문-Primitive-Type-Reference-type-Truthy-Falsy/" style="font-size: 10px;">값, 식, 문, Primitive Type, Reference type, Truthy, Falsy</a> <a href="/tags/내장객체-객체/" style="font-size: 10px;">내장객체, 객체</a> <a href="/tags/클래스/" style="font-size: 10px;">클래스</a> <a href="/tags/프로토타입-생성자-객체지향-인스턴스/" style="font-size: 10px;">프로토타입, 생성자, 객체지향, 인스턴스</a> <a href="/tags/함수-클로저-this바뀌치기/" style="font-size: 10px;">함수, 클로저, this바뀌치기</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/04/21/FunWithHTML5Canvas/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="FunWithHTML5Canvas">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-20T15:15:13.000Z">2019-04-21</time></div>
+                    <a href="/2019/04/21/FunWithHTML5Canvas/" class="has-link-black-ter is-size-6">FunWithHTML5Canvas</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/20/ArrayCardioDay2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="07_ArrayCardioDay2">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-20T13:57:38.000Z">2019-04-20</time></div>
+                    <a href="/2019/04/20/ArrayCardioDay2/" class="has-link-black-ter is-size-6">07_ArrayCardioDay2</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/18/7주차예습과제/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="JAVASCRIPT 스터디 7주차 예습">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-18T14:13:27.000Z">2019-04-18</time></div>
+                    <a href="/2019/04/18/7주차예습과제/" class="has-link-black-ter is-size-6">JAVASCRIPT 스터디 7주차 예습</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/12/ Type Ahead/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Type Ahead">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-12T12:16:22.000Z">2019-04-12</time></div>
+                    <a href="/2019/04/12/ Type Ahead/" class="has-link-black-ter is-size-6">Type Ahead</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/12/naverthechconcent/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-12T03:43:55.856Z">2019-04-12</time></div>
+                    <a href="/2019/04/12/naverthechconcent/" class="has-link-black-ter is-size-6"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Grammar-Type-Primitive-Reference-Value-Expression-Statement-Memory-Truthy-Falsy-Scope/">
+                        <span class="tag">Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy &amp; Falsy, Scope</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
                 </div>
                 
-    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
-        <i id="btn-close-shareoptions" class="fa fa-times"></i>
-        <ul class="share-options">
-            
-                
-                
-                <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/03/31/ArrayCardioDay1/">
-                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo-블로그-Markdown/">
+                        <span class="tag">Hexo, 블로그, Markdown</span>
+                        <span class="tag is-grey">1</span>
                     </a>
-                </li>
-            
+                </div>
                 
-                
-                <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/03/31/ArrayCardioDay1/">
-                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JAVASCRIPT-Object-객체-Prototype/">
+                        <span class="tag">JAVASCRIPT, Object, 객체, Prototype</span>
+                        <span class="tag is-grey">1</span>
                     </a>
-                </li>
-            
+                </div>
                 
-                
-                <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/03/31/ArrayCardioDay1/">
-                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JS30/">
+                        <span class="tag">JS30</span>
+                        <span class="tag is-grey">1</span>
                     </a>
-                </li>
-            
-        </ul>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/값-더-알아보기-JAVASCRIPT-const와-let-비교-var와-let-const-비교-scope-블록스코프-함수스코프-호이스팅-전역변수-전역객체-윈시타입-참조타입-불변성-래처객체-렉시컬-스코프/">
+                        <span class="tag">값 더 알아보기,JAVASCRIPT, const와 let 비교, var와 let,const 비교,scope, 블록스코프, 함수스코프, 호이스팅, 전역변수, 전역객체, 윈시타입, 참조타입, 불변성, 래처객체, 렉시컬 스코프</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/값-식-문-Primitive-Type-Reference-type-Truthy-Falsy/">
+                        <span class="tag">값, 식, 문, Primitive Type, Reference type, Truthy, Falsy</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/내장객체-객체/">
+                        <span class="tag">내장객체, 객체</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/클래스/">
+                        <span class="tag">클래스</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/프로토타입-생성자-객체지향-인스턴스/">
+                        <span class="tag">프로토타입, 생성자, 객체지향, 인스턴스</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/함수-클로저-this바뀌치기/">
+                        <span class="tag">함수, 클로저, this바뀌치기</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
     </div>
-
-
-            
-        </div>
-        
-
-
-<div id="about">
-    <div id="about-card">
-        <div id="about-btn-close">
-            <i class="fa fa-times"></i>
-        </div>
-        
-            <h4 id="about-card-name">RAI KIM</h4>
-        
-            <div id="about-card-bio"><p>author.bio</p>
 </div>
         
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
         
-            <div id="about-card-job">
-                <i class="fa fa-briefcase"></i>
-                <br>
-                <p>author.job</p>
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/04/21/FunWithHTML5Canvas/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="FunWithHTML5Canvas">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-20T15:15:13.000Z">2019-04-21</time></div>
+                    <a href="/2019/04/21/FunWithHTML5Canvas/" class="has-link-black-ter is-size-6">FunWithHTML5Canvas</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/20/ArrayCardioDay2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="07_ArrayCardioDay2">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-20T13:57:38.000Z">2019-04-20</time></div>
+                    <a href="/2019/04/20/ArrayCardioDay2/" class="has-link-black-ter is-size-6">07_ArrayCardioDay2</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/18/7주차예습과제/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="JAVASCRIPT 스터디 7주차 예습">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-18T14:13:27.000Z">2019-04-18</time></div>
+                    <a href="/2019/04/18/7주차예습과제/" class="has-link-black-ter is-size-6">JAVASCRIPT 스터디 7주차 예습</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/12/ Type Ahead/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Type Ahead">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-12T12:16:22.000Z">2019-04-12</time></div>
+                    <a href="/2019/04/12/ Type Ahead/" class="has-link-black-ter is-size-6">Type Ahead</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/12/naverthechconcent/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-12T03:43:55.856Z">2019-04-12</time></div>
+                    <a href="/2019/04/12/naverthechconcent/" class="has-link-black-ter is-size-6"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Grammar-Type-Primitive-Reference-Value-Expression-Statement-Memory-Truthy-Falsy-Scope/">
+                        <span class="tag">Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy &amp; Falsy, Scope</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo-블로그-Markdown/">
+                        <span class="tag">Hexo, 블로그, Markdown</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JAVASCRIPT-Object-객체-Prototype/">
+                        <span class="tag">JAVASCRIPT, Object, 객체, Prototype</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JS30/">
+                        <span class="tag">JS30</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/값-더-알아보기-JAVASCRIPT-const와-let-비교-var와-let-const-비교-scope-블록스코프-함수스코프-호이스팅-전역변수-전역객체-윈시타입-참조타입-불변성-래처객체-렉시컬-스코프/">
+                        <span class="tag">값 더 알아보기,JAVASCRIPT, const와 let 비교, var와 let,const 비교,scope, 블록스코프, 함수스코프, 호이스팅, 전역변수, 전역객체, 윈시타입, 참조타입, 불변성, 래처객체, 렉시컬 스코프</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/값-식-문-Primitive-Type-Reference-type-Truthy-Falsy/">
+                        <span class="tag">값, 식, 문, Primitive Type, Reference type, Truthy, Falsy</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/내장객체-객체/">
+                        <span class="tag">내장객체, 객체</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/클래스/">
+                        <span class="tag">클래스</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/프로토타입-생성자-객체지향-인스턴스/">
+                        <span class="tag">프로토타입, 생성자, 객체지향, 인스턴스</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/함수-클로저-this바뀌치기/">
+                        <span class="tag">함수, 클로저, this바뀌치기</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
 
             </div>
-        
-        
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="JS30 Array Cardio Day 1" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 RAI KIM&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
     </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
 
-        
-        
-<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
-        <!--SCRIPTS-->
-<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
-<!--SCRIPTS END-->
 
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
     
 
 
+<script src="/js/main.js" defer></script>
 
-    </body>
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
 </html>

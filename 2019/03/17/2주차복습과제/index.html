@@ -1,247 +1,169 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="RAI TIL">
-    <title>JAVASCRIPT 스터디 2주차 복습 - RAI TIL</title>
-    <meta name="author" content="RAI KIM">
-    
-        <meta name="keywords" content="블로그, blog, seulbi, @seulbikim, javascript, web, developer, node.js, HTML, CSS, SCSS, frontend,">
-    
-    
-    
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"RAI KIM","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"Grammar\nControl Characters(제어문자) : 눈에 보이지 않지만 여러가지 제어를 위해 삽입되는 문자.\nWhite Space(공백) : 공백 (띄어쓰기)를 컴퓨터가 인식하게 하는 문자.\nLine terminators(줄바꿈) : 말 그대로 컴퓨터가 줄바꿈을 인식할 수 있게하는 문자.\nComments(주석) : 실제 코드로 작성되어있긴 하지만, 번역기가 코드를 컴퓨터가 이해할 수 있는 더 저차원의 언어로 해석할 때 명령으로 인식하지 않는 부분. 사람들이 코드 내용을 편하게 이해하거나 쉽게 기억하기 위해 사용.\nKeywords(키워드) : 미리 약속으로 정해둔 단어들. 이 키워드를 해석기가 만나면 키워드에 미리 지정된 방식으로 내용으로 인식.\nLiterals(리터럴) : 더 이상 나눌 수 없는 값을 표현. 예를 들면 3, ‘3’, [] 등…\n\nStatement\nempty statement : 공문(빈문).\nblock statement : 중문({})\ncontrol statement : 제어문\nexpression statement : 식문\n(variable) declare statement : (변수)선언문\n\n선언, 할당123var a; // 선언var a = 123; //값 할당a = 222; // 재할당\nExpression(표현식)코드 중에 값으로 변환될 수 있는 부분을 표현식이라고 부릅니다.\n함수 표현식12345// 함수 익명 표현식// 자바스크립트는 1급 객체라서 변수에 함수를 넣을 수 있습니다.var count = function() &#123;  return count;&#125;;\n\n자바스크립트가 1급객체이기 때문에 가능한 것\n\n함수를 변수나 데이터에 할당 할 수 있습니다.\n함수를 인자로 전달 할 수 있다.\n함수를 리턴 할 수 있다.\n\n\nType (Primitive(원시), Reference(참조))\n\n\n원시타입\n참조타입\n\n\n\n\nNumber\nObject\n\n\nString\n\n\n\nBoolean\n\n\n\nUndefined\n\n\n\nNull\n\n\n\nSymbol\n\n\n\ntypeof12typeof []; // 'object'// typeof는 타입을 알려줌\n배열 타입자바스크립트 배열은 가짜고 obj이다배열은 JavaScript에 내장되어 있는 자료구조이며 배열은 객체의 일종이지만, 내부적으로 특별하게 취급되어 일반적인 객체들과는 다른 특징을 갖고 있습니다.\nArray.isArray어떤 값이 배열인지 아닌지 판별하기 위해서 Array.isArray 정적 메소드를 사용합니다.\n12Array.isArray([]); // trueArray.isArray(&#123;&#125;); // false\nTruthy &amp; Falsytrue -&gt; truthy, false -&gt; falsy라고 부릅니다.\n\n\n\ntruthy\nfalsy\n\n\n\n\nfalsy 말고 모든것\nfalse\n\n\n\nnull\n\n\n\nundefined\n\n\n\n0\n\n\n\nNaN\n\n\n\n‘’\n\n\n\nTruthy &amp; Falsy 실습\n12345678910111213141516171819202122232425262728function test(str) &#123;  // true가 아니면 return  if (!str) return;  // true이면 '문자열을 들어옴' 호출  return \"문자열을 들어옴\";&#125;test(\"hello\"); // 문자열을 들어옴// 삼항연산자// '' 빈값이 생기면 삼항 연산자 사용이 필요 없음function test2(str) &#123;  // true ? 호출 : ''  // false ? '' : 호출  return str ? \"문자열을 들어옴\" : \"\";&#125;test2(\"hello\"); // 문자열을 들어옴var test3 = function(str) &#123;  // true &amp;&amp; true -&gt; 뒤가 호출  return str &amp;&amp; \"문자열을 들어옴\";&#125;;test3(\"hello\"); // 문자열을 들어옴let test4 = function(str) &#123;  // true || true -&gt; 앞이 호출  return str || \"아무것도 없음\";&#125;;test4(\"hello\"); // hello\nScope특정 변수가 유효한 코드 상의 유효 범위를 가지고 스코프라고 합니다.\n변수\n\n\n\nconst\nlet\nvar\n\n\n\n\n스코프\n블록 스코프\n블록 스코프\n함수 스코프\n\n\n재할당\nX\nO\nO\n\n\n재선언\nX\nX\nO\n\n\n호이스팅\nX\nX\nO\n\n\n사용 권장\n1 순위\n2 순위\n3 순위\n\n\n\n\n🏷 호이스팅\n함수 또는 var변수의 선언부를 현재 scope의 최상단으로 끌어올려지는 현상입니다.var로 선언된 변수는 내부적으로 함수 혹은 파일의 맨위로 끌어올려지는 과정을 호이스팅이리고 한다. 변수의 선언만 위로 끌어올려질 뿐 값을 대입하는 과정은 코드의 순서에 맞게 이루어지기 때문에, 대입에 일어나기 전에 변수의 값을 읽으면 undefined가 불러와지게 됩니다.\n\n참고한 자료및 주소https://www.bsidesoft.com/?p=4074https://medium.com/@soeunlee/javascript%EC%97%90%EC%84%9C-%EC%99%9C-%ED%95%A8%EC%88%98%EA%B0%80-1%EA%B8%89-%EA%B0%9D%EC%B2%B4%EC%9D%BC%EA%B9%8C%EC%9A%94-cc6bd2a9ecac\n","dateCreated":"2019-03-17T23:13:27+09:00","dateModified":"2019-03-18T00:26:16+09:00","datePublished":"2019-03-17T23:13:27+09:00","description":"","headline":"JAVASCRIPT 스터디 2주차 복습","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://kimseulbi.github.io/2019/03/17/2주차복습과제/"},"publisher":{"@type":"Organization","name":"RAI KIM","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"https://kimseulbi.github.io/2019/03/17/2주차복습과제/","keywords":"Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy & Falsy, Scope"}</script>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>JAVASCRIPT 스터디 2주차 복습 - RAI TIL</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
     <meta name="description" content="Grammar Control Characters(제어문자) : 눈에 보이지 않지만 여러가지 제어를 위해 삽입되는 문자. White Space(공백) : 공백 (띄어쓰기)를 컴퓨터가 인식하게 하는 문자. Line terminators(줄바꿈) : 말 그대로 컴퓨터가 줄바꿈을 인식할 수 있게하는 문자. Comments(주석) : 실제 코드로 작성되어있긴 하지만">
 <meta name="keywords" content="Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy &amp; Falsy, Scope">
-<meta property="og:type" content="blog">
+<meta property="og:type" content="article">
 <meta property="og:title" content="JAVASCRIPT 스터디 2주차 복습">
 <meta property="og:url" content="https://kimseulbi.github.io/2019/03/17/2주차복습과제/index.html">
 <meta property="og:site_name" content="RAI TIL">
 <meta property="og:description" content="Grammar Control Characters(제어문자) : 눈에 보이지 않지만 여러가지 제어를 위해 삽입되는 문자. White Space(공백) : 공백 (띄어쓰기)를 컴퓨터가 인식하게 하는 문자. Line terminators(줄바꿈) : 말 그대로 컴퓨터가 줄바꿈을 인식할 수 있게하는 문자. Comments(주석) : 실제 코드로 작성되어있긴 하지만">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://kimseulbi.github.io/images/og_image.png">
 <meta property="og:updated_time" content="2019-03-17T15:26:16.263Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVASCRIPT 스터디 2주차 복습">
 <meta name="twitter:description" content="Grammar Control Characters(제어문자) : 눈에 보이지 않지만 여러가지 제어를 위해 삽입되는 문자. White Space(공백) : 공백 (띄어쓰기)를 컴퓨터가 인식하게 하는 문자. Line terminators(줄바꿈) : 말 그대로 컴퓨터가 줄바꿈을 인식할 수 있게하는 문자. Comments(주석) : 실제 코드로 작성되어있긴 하지만">
+<meta name="twitter:image" content="https://kimseulbi.github.io/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
     
     
-        
     
-    
-    
-    
-    
-    <!--STYLES-->
-    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
-    <!--STYLES END-->
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
     
 
     
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
 </head>
-
-    <body>
-        <div id="blog">
-            <!-- Define author's picture -->
-
-
-    
-
-<header id="header" data-behavior="4">
-    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
-    <div class="header-title">
-        <a class="header-title-link" href="/ ">RAI TIL</a>
-    </div>
-    
-        
-            <a class="header-right-picture " href="#about">
-        
-        
-        </a>
-    
-</header>
-
-            <!-- Define author's picture -->
-
-
-<nav id="sidebar" data-behavior="4">
-    <div class="sidebar-container">
-        
-        
-            <ul class="sidebar-buttons">
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
             
-                <li class="sidebar-button">
+                <img src="/images/logo.svg" alt="JAVASCRIPT 스터디 2주차 복습" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
                     
-                        <a class="sidebar-button-link " href="https://kimseulbi.github.io/" title="Home">
                     
-                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Home</span>
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
                     </a>
-            </li>
-            
-                <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
-                    
-                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
-                    
-                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Tags</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
-                    
-                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link open-algolia-search" href="#search" title="Search">
-                    
-                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Search</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="#about" title="About">
-                    
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
-                    
-                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">GitHub</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
-                    
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
-                    
-                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Twitter</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-                    
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google +">
-                    
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google +</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
-                    
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/mailto" title="Mail">
-                    
-                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Mail</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
-                    
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
     </div>
 </nav>
-
-            
-            <div id="main" data-behavior="4"
-                 class="
-                        hasCoverMetaIn
-                        ">
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-03-17T14:13:27.000Z">2019-03-17</time>
                 
-<article class="post">
-    
-    
-        <div class="post-header main-content-wrap text-left">
-    
-        <h1 class="post-title">
-            JAVASCRIPT 스터디 2주차 복습
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 minutes read (About 1010 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                JAVASCRIPT 스터디 2주차 복습
+            
         </h1>
-    
-    
-        <div class="post-meta">
-    <time datetime="2019-03-17T23:13:27+09:00">
-	
-		    Mar 17, 2019
-    	
-    </time>
-    
-</div>
-
-    
-</div>
-
-    
-    <div class="post-content markdown">
-        <div class="main-content-wrap">
+        <div class="content">
             <h2 id="Grammar"><a href="#Grammar" class="headerlink" title="Grammar"></a>Grammar</h2><ul>
 <li>Control Characters(제어문자) : 눈에 보이지 않지만 여러가지 제어를 위해 삽입되는 문자.</li>
 <li>White Space(공백) : 공백 (띄어쓰기)를 컴퓨터가 인식하게 하는 문자.</li>
@@ -257,9 +179,9 @@
 <li>expression statement : 식문</li>
 <li>(variable) declare statement : (변수)선언문</li>
 </ul>
-<h3 id="선언-할당"><a href="#선언-할당" class="headerlink" title="선언, 할당"></a>선언, 할당</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a; <span class="comment">// 선언</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">123</span>; <span class="comment">//값 할당</span></span><br><span class="line">a = <span class="number">222</span>; <span class="comment">// 재할당</span></span><br></pre></td></tr></table></figure>
+<h3 id="선언-할당"><a href="#선언-할당" class="headerlink" title="선언, 할당"></a>선언, 할당</h3><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> a; <span class="hljs-comment">// 선언</span></span><br><span class="line"><span class="hljs-keyword">var</span> a = <span class="hljs-number">123</span>; <span class="hljs-comment">//값 할당</span></span><br><span class="line">a = <span class="hljs-number">222</span>; <span class="hljs-comment">// 재할당</span></span><br></pre></td></tr></table></figure>
 <h2 id="Expression-표현식"><a href="#Expression-표현식" class="headerlink" title="Expression(표현식)"></a>Expression(표현식)</h2><p>코드 중에 <strong>값으로 변환될 수 있는</strong> 부분을 <strong>표현식</strong>이라고 부릅니다.</p>
-<h3 id="함수-표현식"><a href="#함수-표현식" class="headerlink" title="함수 표현식"></a>함수 표현식</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 함수 익명 표현식</span></span><br><span class="line"><span class="comment">// 자바스크립트는 1급 객체라서 변수에 함수를 넣을 수 있습니다.</span></span><br><span class="line"><span class="keyword">var</span> count = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> count;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="함수-표현식"><a href="#함수-표현식" class="headerlink" title="함수 표현식"></a>함수 표현식</h3><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// 함수 익명 표현식</span></span><br><span class="line"><span class="hljs-comment">// 자바스크립트는 1급 객체라서 변수에 함수를 넣을 수 있습니다.</span></span><br><span class="line"><span class="hljs-keyword">var</span> count = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> count;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>자바스크립트가 1급객체이기 때문에 가능한 것</p>
 <ol>
@@ -301,10 +223,10 @@
 </tr>
 </tbody>
 </table>
-<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> []; <span class="comment">// 'object'</span></span><br><span class="line"><span class="comment">// typeof는 타입을 알려줌</span></span><br></pre></td></tr></table></figure>
+<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">typeof</span> []; <span class="hljs-comment">// 'object'</span></span><br><span class="line"><span class="hljs-comment">// typeof는 타입을 알려줌</span></span><br></pre></td></tr></table></figure>
 <h3 id="배열-타입"><a href="#배열-타입" class="headerlink" title="배열 타입"></a>배열 타입</h3><p>자바스크립트 배열은 가짜고 obj이다<br>배열은 JavaScript에 내장되어 있는 자료구조이며 배열은 객체의 일종이지만, 내부적으로 특별하게 취급되어 일반적인 객체들과는 다른 특징을 갖고 있습니다.</p>
 <h3 id="Array-isArray"><a href="#Array-isArray" class="headerlink" title="Array.isArray"></a>Array.isArray</h3><p>어떤 값이 배열인지 아닌지 판별하기 위해서 <code>Array.isArray</code> 정적 메소드를 사용합니다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.isArray([]); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(&#123;&#125;); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">Array</span>.isArray([]); <span class="hljs-comment">// true</span></span><br><span class="line"><span class="hljs-built_in">Array</span>.isArray(&#123;&#125;); <span class="hljs-comment">// false</span></span><br></pre></td></tr></table></figure>
 <h2 id="Truthy-amp-Falsy"><a href="#Truthy-amp-Falsy" class="headerlink" title="Truthy &amp; Falsy"></a>Truthy &amp; Falsy</h2><p><code>true</code> -&gt; <code>truthy</code>, <code>false</code> -&gt; <code>falsy</code>라고 부릅니다.</p>
 <table>
 <thead>
@@ -341,7 +263,7 @@
 </tbody>
 </table>
 <p><strong>Truthy &amp; Falsy 실습</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// true가 아니면 return</span></span><br><span class="line">  <span class="keyword">if</span> (!str) <span class="keyword">return</span>;</span><br><span class="line">  <span class="comment">// true이면 '문자열을 들어옴' 호출</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"문자열을 들어옴"</span>;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="string">"hello"</span>); <span class="comment">// 문자열을 들어옴</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 삼항연산자</span></span><br><span class="line"><span class="comment">// '' 빈값이 생기면 삼항 연산자 사용이 필요 없음</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// true ? 호출 : ''</span></span><br><span class="line">  <span class="comment">// false ? '' : 호출</span></span><br><span class="line">  <span class="keyword">return</span> str ? <span class="string">"문자열을 들어옴"</span> : <span class="string">""</span>;</span><br><span class="line">&#125;</span><br><span class="line">test2(<span class="string">"hello"</span>); <span class="comment">// 문자열을 들어옴</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> test3 = <span class="function"><span class="keyword">function</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// true &amp;&amp; true -&gt; 뒤가 호출</span></span><br><span class="line">  <span class="keyword">return</span> str &amp;&amp; <span class="string">"문자열을 들어옴"</span>;</span><br><span class="line">&#125;;</span><br><span class="line">test3(<span class="string">"hello"</span>); <span class="comment">// 문자열을 들어옴</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> test4 = <span class="function"><span class="keyword">function</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// true || true -&gt; 앞이 호출</span></span><br><span class="line">  <span class="keyword">return</span> str || <span class="string">"아무것도 없음"</span>;</span><br><span class="line">&#125;;</span><br><span class="line">test4(<span class="string">"hello"</span>); <span class="comment">// hello</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params">str</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-comment">// true가 아니면 return</span></span><br><span class="line">  <span class="hljs-keyword">if</span> (!str) <span class="hljs-keyword">return</span>;</span><br><span class="line">  <span class="hljs-comment">// true이면 '문자열을 들어옴' 호출</span></span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-string">"문자열을 들어옴"</span>;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="hljs-string">"hello"</span>); <span class="hljs-comment">// 문자열을 들어옴</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 삼항연산자</span></span><br><span class="line"><span class="hljs-comment">// '' 빈값이 생기면 삼항 연산자 사용이 필요 없음</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test2</span>(<span class="hljs-params">str</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-comment">// true ? 호출 : ''</span></span><br><span class="line">  <span class="hljs-comment">// false ? '' : 호출</span></span><br><span class="line">  <span class="hljs-keyword">return</span> str ? <span class="hljs-string">"문자열을 들어옴"</span> : <span class="hljs-string">""</span>;</span><br><span class="line">&#125;</span><br><span class="line">test2(<span class="hljs-string">"hello"</span>); <span class="hljs-comment">// 문자열을 들어옴</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> test3 = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-comment">// true &amp;&amp; true -&gt; 뒤가 호출</span></span><br><span class="line">  <span class="hljs-keyword">return</span> str &amp;&amp; <span class="hljs-string">"문자열을 들어옴"</span>;</span><br><span class="line">&#125;;</span><br><span class="line">test3(<span class="hljs-string">"hello"</span>); <span class="hljs-comment">// 문자열을 들어옴</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">let</span> test4 = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-comment">// true || true -&gt; 앞이 호출</span></span><br><span class="line">  <span class="hljs-keyword">return</span> str || <span class="hljs-string">"아무것도 없음"</span>;</span><br><span class="line">&#125;;</span><br><span class="line">test4(<span class="hljs-string">"hello"</span>); <span class="hljs-comment">// hello</span></span><br></pre></td></tr></table></figure>
 <h2 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h2><p>특정 변수가 유효한 코드 상의 <strong>유효 범위</strong>를 가지고 <code>스코프</code>라고 합니다.</p>
 <h3 id="변수"><a href="#변수" class="headerlink" title="변수"></a>변수</h3><table>
 <thead>
@@ -391,246 +313,927 @@
 </blockquote>
 <h2 id="참고한-자료및-주소"><a href="#참고한-자료및-주소" class="headerlink" title="참고한 자료및 주소"></a>참고한 자료및 주소</h2><p><a href="https://www.bsidesoft.com/?p=4074" target="_blank" rel="noopener">https://www.bsidesoft.com/?p=4074</a><br><a href="https://medium.com/@soeunlee/javascript%EC%97%90%EC%84%9C-%EC%99%9C-%ED%95%A8%EC%88%98%EA%B0%80-1%EA%B8%89-%EA%B0%9D%EC%B2%B4%EC%9D%BC%EA%B9%8C%EC%9A%94-cc6bd2a9ecac" target="_blank" rel="noopener">https://medium.com/@soeunlee/javascript%EC%97%90%EC%84%9C-%EC%99%9C-%ED%95%A8%EC%88%98%EA%B0%80-1%EA%B8%89-%EA%B0%9D%EC%B2%B4%EC%9D%BC%EA%B9%8C%EC%9A%94-cc6bd2a9ecac</a></p>
 
-            
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Grammar-Type-Primitive-Reference-Value-Expression-Statement-Memory-Truthy-Falsy-Scope/">Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy & Falsy, Scope</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
 
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
+            
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
+                
         </div>
     </div>
-    <div id="post-footer" class="post-footer main-content-wrap">
-        
-            <div class="post-footer-tags">
-                <span class="text-color-light text-small">TAGGED IN</span><br>
-                
-    <a class="tag tag--primary tag--small t-link" href="/tags/Grammar-Type-Primitive-Reference-Value-Expression-Statement-Memory-Truthy-Falsy-Scope/">Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy & Falsy, Scope</a>
-
-            </div>
-        
-        
-            <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/22/3주차예습과제/" data-tooltip="JAVASCRIPT 스터디 3주차 예습" aria-label="PREVIOUS: JAVASCRIPT 스터디 3주차 예습">
-                
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/15/2주차예습과제/" data-tooltip="JAVASCRIPT 스터디 2주차 예습" aria-label="NEXT: JAVASCRIPT 스터디 2주차 예습">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
-                <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </a>
-        </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/03/17/2주차복습과제/" title="Share on Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/03/17/2주차복습과제/" title="Share on Twitter">
-                    <i class="fab fa-twitter" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/03/17/2주차복습과제/" title="Share on Google+">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-        
-            
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
-            
-                <i class="fa fa-list" aria-hidden="true"></i>
-            </a>
-        </li>
-    </ul>
 </div>
 
 
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/03/22/3주차예습과제/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">JAVASCRIPT 스터디 3주차 예습</span>
+            </a>
+        </div>
         
         
-            
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/03/15/2주차예습과제/">
+                <span class="level-item">JAVASCRIPT 스터디 2주차 예습</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
         
     </div>
-</article>
-
-
-
-                <footer id="footer" class="main-content-wrap">
-    <span class="copyrights">
-        Copyrights &copy; 2019 RAI KIM. All Rights Reserved.
-    </span>
-</footer>
-
-            </div>
-            
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
-                    <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/22/3주차예습과제/" data-tooltip="JAVASCRIPT 스터디 3주차 예습" aria-label="PREVIOUS: JAVASCRIPT 스터디 3주차 예습">
-                
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/15/2주차예습과제/" data-tooltip="JAVASCRIPT 스터디 2주차 예습" aria-label="NEXT: JAVASCRIPT 스터디 2주차 예습">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
-                <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </a>
-        </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/03/17/2주차복습과제/" title="Share on Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/03/17/2주차복습과제/" title="Share on Twitter">
-                    <i class="fab fa-twitter" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/03/17/2주차복습과제/" title="Share on Google+">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-        
-            
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
-            
-                <i class="fa fa-list" aria-hidden="true"></i>
-            </a>
-        </li>
-    </ul>
 </div>
 
 
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="Your name">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Your name
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Your title
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Your location</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        17
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        10
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/ppoffice">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/Grammar-Type-Primitive-Reference-Value-Expression-Statement-Memory-Truthy-Falsy-Scope/" style="font-size: 10px;">Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy & Falsy, Scope</a> <a href="/tags/Hexo-블로그-Markdown/" style="font-size: 10px;">Hexo, 블로그, Markdown</a> <a href="/tags/JAVASCRIPT-Object-객체-Prototype/" style="font-size: 10px;">JAVASCRIPT, Object, 객체, Prototype</a> <a href="/tags/JS30/" style="font-size: 10px;">JS30</a> <a href="/tags/값-더-알아보기-JAVASCRIPT-const와-let-비교-var와-let-const-비교-scope-블록스코프-함수스코프-호이스팅-전역변수-전역객체-윈시타입-참조타입-불변성-래처객체-렉시컬-스코프/" style="font-size: 10px;">값 더 알아보기,JAVASCRIPT, const와 let 비교, var와 let,const 비교,scope, 블록스코프, 함수스코프, 호이스팅, 전역변수, 전역객체, 윈시타입, 참조타입, 불변성, 래처객체, 렉시컬 스코프</a> <a href="/tags/값-식-문-Primitive-Type-Reference-type-Truthy-Falsy/" style="font-size: 10px;">값, 식, 문, Primitive Type, Reference type, Truthy, Falsy</a> <a href="/tags/내장객체-객체/" style="font-size: 10px;">내장객체, 객체</a> <a href="/tags/클래스/" style="font-size: 10px;">클래스</a> <a href="/tags/프로토타입-생성자-객체지향-인스턴스/" style="font-size: 10px;">프로토타입, 생성자, 객체지향, 인스턴스</a> <a href="/tags/함수-클로저-this바뀌치기/" style="font-size: 10px;">함수, 클로저, this바뀌치기</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/04/21/FunWithHTML5Canvas/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="FunWithHTML5Canvas">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-20T15:15:13.000Z">2019-04-21</time></div>
+                    <a href="/2019/04/21/FunWithHTML5Canvas/" class="has-link-black-ter is-size-6">FunWithHTML5Canvas</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/20/ArrayCardioDay2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="07_ArrayCardioDay2">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-20T13:57:38.000Z">2019-04-20</time></div>
+                    <a href="/2019/04/20/ArrayCardioDay2/" class="has-link-black-ter is-size-6">07_ArrayCardioDay2</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/18/7주차예습과제/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="JAVASCRIPT 스터디 7주차 예습">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-18T14:13:27.000Z">2019-04-18</time></div>
+                    <a href="/2019/04/18/7주차예습과제/" class="has-link-black-ter is-size-6">JAVASCRIPT 스터디 7주차 예습</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/12/ Type Ahead/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Type Ahead">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-12T12:16:22.000Z">2019-04-12</time></div>
+                    <a href="/2019/04/12/ Type Ahead/" class="has-link-black-ter is-size-6">Type Ahead</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/12/naverthechconcent/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-12T03:43:55.856Z">2019-04-12</time></div>
+                    <a href="/2019/04/12/naverthechconcent/" class="has-link-black-ter is-size-6"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Grammar-Type-Primitive-Reference-Value-Expression-Statement-Memory-Truthy-Falsy-Scope/">
+                        <span class="tag">Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy &amp; Falsy, Scope</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
                 </div>
                 
-    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
-        <i id="btn-close-shareoptions" class="fa fa-times"></i>
-        <ul class="share-options">
-            
-                
-                
-                <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/03/17/2주차복습과제/">
-                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo-블로그-Markdown/">
+                        <span class="tag">Hexo, 블로그, Markdown</span>
+                        <span class="tag is-grey">1</span>
                     </a>
-                </li>
-            
+                </div>
                 
-                
-                <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/03/17/2주차복습과제/">
-                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JAVASCRIPT-Object-객체-Prototype/">
+                        <span class="tag">JAVASCRIPT, Object, 객체, Prototype</span>
+                        <span class="tag is-grey">1</span>
                     </a>
-                </li>
-            
+                </div>
                 
-                
-                <li class="share-option">
-                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/03/17/2주차복습과제/">
-                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JS30/">
+                        <span class="tag">JS30</span>
+                        <span class="tag is-grey">1</span>
                     </a>
-                </li>
-            
-        </ul>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/값-더-알아보기-JAVASCRIPT-const와-let-비교-var와-let-const-비교-scope-블록스코프-함수스코프-호이스팅-전역변수-전역객체-윈시타입-참조타입-불변성-래처객체-렉시컬-스코프/">
+                        <span class="tag">값 더 알아보기,JAVASCRIPT, const와 let 비교, var와 let,const 비교,scope, 블록스코프, 함수스코프, 호이스팅, 전역변수, 전역객체, 윈시타입, 참조타입, 불변성, 래처객체, 렉시컬 스코프</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/값-식-문-Primitive-Type-Reference-type-Truthy-Falsy/">
+                        <span class="tag">값, 식, 문, Primitive Type, Reference type, Truthy, Falsy</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/내장객체-객체/">
+                        <span class="tag">내장객체, 객체</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/클래스/">
+                        <span class="tag">클래스</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/프로토타입-생성자-객체지향-인스턴스/">
+                        <span class="tag">프로토타입, 생성자, 객체지향, 인스턴스</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/함수-클로저-this바뀌치기/">
+                        <span class="tag">함수, 클로저, this바뀌치기</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
     </div>
-
-
-            
-        </div>
-        
-
-
-<div id="about">
-    <div id="about-card">
-        <div id="about-btn-close">
-            <i class="fa fa-times"></i>
-        </div>
-        
-            <h4 id="about-card-name">RAI KIM</h4>
-        
-            <div id="about-card-bio"><p>author.bio</p>
 </div>
         
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
         
-            <div id="about-card-job">
-                <i class="fa fa-briefcase"></i>
-                <br>
-                <p>author.job</p>
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/04/21/FunWithHTML5Canvas/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="FunWithHTML5Canvas">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-20T15:15:13.000Z">2019-04-21</time></div>
+                    <a href="/2019/04/21/FunWithHTML5Canvas/" class="has-link-black-ter is-size-6">FunWithHTML5Canvas</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/20/ArrayCardioDay2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="07_ArrayCardioDay2">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-20T13:57:38.000Z">2019-04-20</time></div>
+                    <a href="/2019/04/20/ArrayCardioDay2/" class="has-link-black-ter is-size-6">07_ArrayCardioDay2</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/18/7주차예습과제/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="JAVASCRIPT 스터디 7주차 예습">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-18T14:13:27.000Z">2019-04-18</time></div>
+                    <a href="/2019/04/18/7주차예습과제/" class="has-link-black-ter is-size-6">JAVASCRIPT 스터디 7주차 예습</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/12/ Type Ahead/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Type Ahead">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-12T12:16:22.000Z">2019-04-12</time></div>
+                    <a href="/2019/04/12/ Type Ahead/" class="has-link-black-ter is-size-6">Type Ahead</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/12/naverthechconcent/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-12T03:43:55.856Z">2019-04-12</time></div>
+                    <a href="/2019/04/12/naverthechconcent/" class="has-link-black-ter is-size-6"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Grammar-Type-Primitive-Reference-Value-Expression-Statement-Memory-Truthy-Falsy-Scope/">
+                        <span class="tag">Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy &amp; Falsy, Scope</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo-블로그-Markdown/">
+                        <span class="tag">Hexo, 블로그, Markdown</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JAVASCRIPT-Object-객체-Prototype/">
+                        <span class="tag">JAVASCRIPT, Object, 객체, Prototype</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JS30/">
+                        <span class="tag">JS30</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/값-더-알아보기-JAVASCRIPT-const와-let-비교-var와-let-const-비교-scope-블록스코프-함수스코프-호이스팅-전역변수-전역객체-윈시타입-참조타입-불변성-래처객체-렉시컬-스코프/">
+                        <span class="tag">값 더 알아보기,JAVASCRIPT, const와 let 비교, var와 let,const 비교,scope, 블록스코프, 함수스코프, 호이스팅, 전역변수, 전역객체, 윈시타입, 참조타입, 불변성, 래처객체, 렉시컬 스코프</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/값-식-문-Primitive-Type-Reference-type-Truthy-Falsy/">
+                        <span class="tag">값, 식, 문, Primitive Type, Reference type, Truthy, Falsy</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/내장객체-객체/">
+                        <span class="tag">내장객체, 객체</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/클래스/">
+                        <span class="tag">클래스</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/프로토타입-생성자-객체지향-인스턴스/">
+                        <span class="tag">프로토타입, 생성자, 객체지향, 인스턴스</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/함수-클로저-this바뀌치기/">
+                        <span class="tag">함수, 클로저, this바뀌치기</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
 
             </div>
-        
-        
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="JAVASCRIPT 스터디 2주차 복습" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 RAI KIM&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
     </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
 
-        
-        
-<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
-        <!--SCRIPTS-->
-<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
-<!--SCRIPTS END-->
 
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
     
 
 
+<script src="/js/main.js" defer></script>
 
-    </body>
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
 </html>
