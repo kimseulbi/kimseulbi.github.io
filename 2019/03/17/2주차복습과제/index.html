@@ -1,7 +1,248 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="SEULBI KIM,ksb5166@gmail.com"><title>JAVASCRIPT 스터디 2주차 복습 · RAI TIL</title><meta name="description" content="Grammar
-Control Characters(제어문자) : 눈에 보이지 않지만 여러가지 제어를 위해 삽입되는 문자.
-White Space(공백) : 공백 (띄어쓰기)를 컴퓨터가 인식하게 하는 문자.
-Line terminators(줄바꿈) : 말 그대로 컴퓨터가 줄바"><meta name="keywords" content="Hexo,블로그, blog, seulbi, @seulbikim, javascript, web, developer, node.js, HTML, CSS, SCSS, frontend"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">RAI TIL</a></h3><div class="description"><p>시옷스 스터디에서 학습한 내용 정리, 개발하면서 삽질한 것 정리</p></div></div></div><ul class="social-links"><li><a href="http://github.com/kimseulbi"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">Home</a></li><li></li><li><a href="/archives">Arquivo</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>JAVASCRIPT 스터디 2주차 복습</a></h3></div><div class="post-content"><h2 id="Grammar"><a href="#Grammar" class="headerlink" title="Grammar"></a>Grammar</h2><ul>
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="RAI TIL">
+    <title>JAVASCRIPT 스터디 2주차 복습 - RAI TIL</title>
+    <meta name="author" content="RAI KIM">
+    
+        <meta name="keywords" content="블로그, blog, seulbi, @seulbikim, javascript, web, developer, node.js, HTML, CSS, SCSS, frontend,">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"RAI KIM","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"Grammar\nControl Characters(제어문자) : 눈에 보이지 않지만 여러가지 제어를 위해 삽입되는 문자.\nWhite Space(공백) : 공백 (띄어쓰기)를 컴퓨터가 인식하게 하는 문자.\nLine terminators(줄바꿈) : 말 그대로 컴퓨터가 줄바꿈을 인식할 수 있게하는 문자.\nComments(주석) : 실제 코드로 작성되어있긴 하지만, 번역기가 코드를 컴퓨터가 이해할 수 있는 더 저차원의 언어로 해석할 때 명령으로 인식하지 않는 부분. 사람들이 코드 내용을 편하게 이해하거나 쉽게 기억하기 위해 사용.\nKeywords(키워드) : 미리 약속으로 정해둔 단어들. 이 키워드를 해석기가 만나면 키워드에 미리 지정된 방식으로 내용으로 인식.\nLiterals(리터럴) : 더 이상 나눌 수 없는 값을 표현. 예를 들면 3, ‘3’, [] 등…\n\nStatement\nempty statement : 공문(빈문).\nblock statement : 중문({})\ncontrol statement : 제어문\nexpression statement : 식문\n(variable) declare statement : (변수)선언문\n\n선언, 할당123var a; // 선언var a = 123; //값 할당a = 222; // 재할당\nExpression(표현식)코드 중에 값으로 변환될 수 있는 부분을 표현식이라고 부릅니다.\n함수 표현식12345// 함수 익명 표현식// 자바스크립트는 1급 객체라서 변수에 함수를 넣을 수 있습니다.var count = function() &#123;  return count;&#125;;\n\n자바스크립트가 1급객체이기 때문에 가능한 것\n\n함수를 변수나 데이터에 할당 할 수 있습니다.\n함수를 인자로 전달 할 수 있다.\n함수를 리턴 할 수 있다.\n\n\nType (Primitive(원시), Reference(참조))\n\n\n원시타입\n참조타입\n\n\n\n\nNumber\nObject\n\n\nString\n\n\n\nBoolean\n\n\n\nUndefined\n\n\n\nNull\n\n\n\nSymbol\n\n\n\ntypeof12typeof []; // 'object'// typeof는 타입을 알려줌\n배열 타입자바스크립트 배열은 가짜고 obj이다배열은 JavaScript에 내장되어 있는 자료구조이며 배열은 객체의 일종이지만, 내부적으로 특별하게 취급되어 일반적인 객체들과는 다른 특징을 갖고 있습니다.\nArray.isArray어떤 값이 배열인지 아닌지 판별하기 위해서 Array.isArray 정적 메소드를 사용합니다.\n12Array.isArray([]); // trueArray.isArray(&#123;&#125;); // false\nTruthy &amp; Falsytrue -&gt; truthy, false -&gt; falsy라고 부릅니다.\n\n\n\ntruthy\nfalsy\n\n\n\n\nfalsy 말고 모든것\nfalse\n\n\n\nnull\n\n\n\nundefined\n\n\n\n0\n\n\n\nNaN\n\n\n\n‘’\n\n\n\nTruthy &amp; Falsy 실습\n12345678910111213141516171819202122232425262728function test(str) &#123;  // true가 아니면 return  if (!str) return;  // true이면 '문자열을 들어옴' 호출  return \"문자열을 들어옴\";&#125;test(\"hello\"); // 문자열을 들어옴// 삼항연산자// '' 빈값이 생기면 삼항 연산자 사용이 필요 없음function test2(str) &#123;  // true ? 호출 : ''  // false ? '' : 호출  return str ? \"문자열을 들어옴\" : \"\";&#125;test2(\"hello\"); // 문자열을 들어옴var test3 = function(str) &#123;  // true &amp;&amp; true -&gt; 뒤가 호출  return str &amp;&amp; \"문자열을 들어옴\";&#125;;test3(\"hello\"); // 문자열을 들어옴let test4 = function(str) &#123;  // true || true -&gt; 앞이 호출  return str || \"아무것도 없음\";&#125;;test4(\"hello\"); // hello\nScope특정 변수가 유효한 코드 상의 유효 범위를 가지고 스코프라고 합니다.\n변수\n\n\n\nconst\nlet\nvar\n\n\n\n\n스코프\n블록 스코프\n블록 스코프\n함수 스코프\n\n\n재할당\nX\nO\nO\n\n\n재선언\nX\nX\nO\n\n\n호이스팅\nX\nX\nO\n\n\n사용 권장\n1 순위\n2 순위\n3 순위\n\n\n\n\n🏷 호이스팅\n함수 또는 var변수의 선언부를 현재 scope의 최상단으로 끌어올려지는 현상입니다.var로 선언된 변수는 내부적으로 함수 혹은 파일의 맨위로 끌어올려지는 과정을 호이스팅이리고 한다. 변수의 선언만 위로 끌어올려질 뿐 값을 대입하는 과정은 코드의 순서에 맞게 이루어지기 때문에, 대입에 일어나기 전에 변수의 값을 읽으면 undefined가 불러와지게 됩니다.\n\n참고한 자료및 주소https://www.bsidesoft.com/?p=4074https://medium.com/@soeunlee/javascript%EC%97%90%EC%84%9C-%EC%99%9C-%ED%95%A8%EC%88%98%EA%B0%80-1%EA%B8%89-%EA%B0%9D%EC%B2%B4%EC%9D%BC%EA%B9%8C%EC%9A%94-cc6bd2a9ecac\n","dateCreated":"2019-03-17T23:13:27+09:00","dateModified":"2019-03-18T00:26:16+09:00","datePublished":"2019-03-17T23:13:27+09:00","description":"","headline":"JAVASCRIPT 스터디 2주차 복습","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://kimseulbi.github.io/2019/03/17/2주차복습과제/"},"publisher":{"@type":"Organization","name":"RAI KIM","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"https://kimseulbi.github.io/2019/03/17/2주차복습과제/","keywords":"Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy & Falsy, Scope"}</script>
+    <meta name="description" content="Grammar Control Characters(제어문자) : 눈에 보이지 않지만 여러가지 제어를 위해 삽입되는 문자. White Space(공백) : 공백 (띄어쓰기)를 컴퓨터가 인식하게 하는 문자. Line terminators(줄바꿈) : 말 그대로 컴퓨터가 줄바꿈을 인식할 수 있게하는 문자. Comments(주석) : 실제 코드로 작성되어있긴 하지만">
+<meta name="keywords" content="Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy &amp; Falsy, Scope">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="JAVASCRIPT 스터디 2주차 복습">
+<meta property="og:url" content="https://kimseulbi.github.io/2019/03/17/2주차복습과제/index.html">
+<meta property="og:site_name" content="RAI TIL">
+<meta property="og:description" content="Grammar Control Characters(제어문자) : 눈에 보이지 않지만 여러가지 제어를 위해 삽입되는 문자. White Space(공백) : 공백 (띄어쓰기)를 컴퓨터가 인식하게 하는 문자. Line terminators(줄바꿈) : 말 그대로 컴퓨터가 줄바꿈을 인식할 수 있게하는 문자. Comments(주석) : 실제 코드로 작성되어있긴 하지만">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-03-17T15:26:16.263Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JAVASCRIPT 스터디 2주차 복습">
+<meta name="twitter:description" content="Grammar Control Characters(제어문자) : 눈에 보이지 않지만 여러가지 제어를 위해 삽입되는 문자. White Space(공백) : 공백 (띄어쓰기)를 컴퓨터가 인식하게 하는 문자. Line terminators(줄바꿈) : 말 그대로 컴퓨터가 줄바꿈을 인식할 수 있게하는 문자. Comments(주석) : 실제 코드로 작성되어있긴 하지만">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
+    <!--STYLES END-->
+    
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">RAI TIL</a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about">
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/ " title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link open-algolia-search" href="#search" title="Search">
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="#about" title="About">
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
+                    
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
+                    
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
+                    
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google +">
+                    
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google +</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/mailto" title="Mail">
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            JAVASCRIPT 스터디 2주차 복습
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2019-03-17T23:13:27+09:00">
+	
+		    Mar 17, 2019
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h2 id="Grammar"><a href="#Grammar" class="headerlink" title="Grammar"></a>Grammar</h2><ul>
 <li>Control Characters(제어문자) : 눈에 보이지 않지만 여러가지 제어를 위해 삽입되는 문자.</li>
 <li>White Space(공백) : 공백 (띄어쓰기)를 컴퓨터가 인식하게 하는 문자.</li>
 <li>Line terminators(줄바꿈) : 말 그대로 컴퓨터가 줄바꿈을 인식할 수 있게하는 문자.</li>
@@ -149,4 +390,247 @@ Line terminators(줄바꿈) : 말 그대로 컴퓨터가 줄바"><meta name="key
 <p>함수 또는 <code>var</code>변수의 선언부를 현재 scope의 최상단으로 끌어올려지는 현상입니다.<br><code>var</code>로 선언된 변수는 내부적으로 함수 혹은 파일의 맨위로 끌어올려지는 과정을 호이스팅이리고 한다. 변수의 선언만 위로 끌어올려질 뿐 값을 대입하는 과정은 코드의 순서에 맞게 이루어지기 때문에, 대입에 일어나기 전에 변수의 값을 읽으면 <code>undefined</code>가 불러와지게 됩니다.</p>
 </blockquote>
 <h2 id="참고한-자료및-주소"><a href="#참고한-자료및-주소" class="headerlink" title="참고한 자료및 주소"></a>참고한 자료및 주소</h2><p><a href="https://www.bsidesoft.com/?p=4074" target="_blank" rel="noopener">https://www.bsidesoft.com/?p=4074</a><br><a href="https://medium.com/@soeunlee/javascript%EC%97%90%EC%84%9C-%EC%99%9C-%ED%95%A8%EC%88%98%EA%B0%80-1%EA%B8%89-%EA%B0%9D%EC%B2%B4%EC%9D%BC%EA%B9%8C%EC%9A%94-cc6bd2a9ecac" target="_blank" rel="noopener">https://medium.com/@soeunlee/javascript%EC%97%90%EC%84%9C-%EC%99%9C-%ED%95%A8%EC%88%98%EA%B0%80-1%EA%B8%89-%EA%B0%9D%EC%B2%B4%EC%9D%BC%EA%B9%8C%EC%9A%94-cc6bd2a9ecac</a></p>
-</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-03-17</span><i class="fa fa-tag"></i><a class="tag" href="/tags/Grammar-Type-Primitive-Reference-Value-Expression-Statement-Memory-Truthy-Falsy-Scope/" title="Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy &amp; Falsy, Scope">Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy &amp; Falsy, Scope </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,https://kimseulbi.github.io/2019/03/17/2주차복습과제/,RAI TIL,JAVASCRIPT 스터디 2주차 복습,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2019/03/22/3주차예습과제/" title="JAVASCRIPT 스터디 3주차 예습">Post Anterior</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/03/15/2주차예습과제/" title="JAVASCRIPT 스터디 2주차 예습">Próximo post</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
+
+            
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Grammar-Type-Primitive-Reference-Value-Expression-Statement-Memory-Truthy-Falsy-Scope/">Grammar, Type (Primitive, Reference), Value, Expression,  Statement, Memory, Truthy & Falsy, Scope</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/22/3주차예습과제/" data-tooltip="JAVASCRIPT 스터디 3주차 예습" aria-label="PREVIOUS: JAVASCRIPT 스터디 3주차 예습">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/15/2주차예습과제/" data-tooltip="JAVASCRIPT 스터디 2주차 예습" aria-label="NEXT: JAVASCRIPT 스터디 2주차 예습">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/03/17/2주차복습과제/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/03/17/2주차복습과제/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/03/17/2주차복습과제/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 RAI KIM. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/22/3주차예습과제/" data-tooltip="JAVASCRIPT 스터디 3주차 예습" aria-label="PREVIOUS: JAVASCRIPT 스터디 3주차 예습">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/15/2주차예습과제/" data-tooltip="JAVASCRIPT 스터디 2주차 예습" aria-label="NEXT: JAVASCRIPT 스터디 2주차 예습">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/03/17/2주차복습과제/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/03/17/2주차복습과제/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/03/17/2주차복습과제/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kimseulbi.github.io/2019/03/17/2주차복습과제/">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://kimseulbi.github.io/2019/03/17/2주차복습과제/">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://kimseulbi.github.io/2019/03/17/2주차복습과제/">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">RAI KIM</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+
+
+
+    </body>
+</html>
