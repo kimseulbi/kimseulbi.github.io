@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="SEULBI KIM,ksb5166@gmail.com"><title>FRONT ENDGAME · RAI TIL</title><meta name="description" content="천민호-펍지프레임워크 철학리액트 철학
+개발자
+철저한 방목형 -&amp;gt; 많은 선택권을 줍니다. 
+동기화는 setState 동기화 하는 시점을 개발자에게 맡긴다.
+
+앵굴러 철학
+사용자 
+철저한 사육형 
+앱 상태 변화가 일어날 것 같으면 앵귤러가 알아서 
+
+앵귤러
+알아될것들"><meta name="keywords" content="Hexo,블로그, blog, seulbi, @seulbikim, javascript, web, developer, node.js, HTML, CSS, SCSS, frontend"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">RAI TIL</a></h3><div class="description"><p>시옷스 스터디에서 학습한 내용 정리, 개발하면서 삽질한 것 정리</p></div></div></div><ul class="social-links"><li><a href="http://github.com/kimseulbi"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">Home</a></li><li></li><li><a href="/archives">Arquivo</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>FRONT ENDGAME</a></h3></div><div class="post-content"><h1 id="천민호-펍지"><a href="#천민호-펍지" class="headerlink" title="천민호-펍지"></a>천민호-펍지</h1><h2 id="프레임워크-철학"><a href="#프레임워크-철학" class="headerlink" title="프레임워크 철학"></a>프레임워크 철학</h2><h3 id="리액트-철학"><a href="#리액트-철학" class="headerlink" title="리액트 철학"></a>리액트 철학</h3><ul>
+<li>개발자</li>
+<li>철저한 방목형 -&gt; 많은 선택권을 줍니다. </li>
+<li>동기화는 setState 동기화 하는 시점을 개발자에게 맡긴다.</li>
+</ul>
+<h3 id="앵굴러-철학"><a href="#앵굴러-철학" class="headerlink" title="앵굴러 철학"></a>앵굴러 철학</h3><ul>
+<li>사용자 </li>
+<li>철저한 사육형 </li>
+<li>앱 상태 변화가 일어날 것 같으면 앵귤러가 알아서 </li>
+</ul>
+<h2 id="앵귤러"><a href="#앵귤러" class="headerlink" title="앵귤러"></a>앵귤러</h2><ul>
+<li>알아될것들이 너무 많음, 진입 장벽이 높음 </li>
+<li>typeScript - 자바스트립트에서 type정의가 없으니 필수적으로 사용</li>
+<li>RXJS</li>
+<li>제약사항이 많음 -&gt; 앵귤러는 개발자를 사용자로 바라봄 </li>
+</ul>
+<h3 id="Best-Practioce"><a href="#Best-Practioce" class="headerlink" title="Best Practioce"></a>Best Practioce</h3><p>Best Practioce를 찾기 어려움 하지만 앵귤러는 이미정해져있으면 개발방법을 제시, 도규먼트에서 있는 내용만 봐도 충분<br>10이상이 참여하는 프로젝트에 Best Practioce가 없다면 힘들어집니다.<br>제약 사항이 많기 때문에 규모가 큰곳에서 많이들 사용합니다. </p>
+<h3 id="TypeSript"><a href="#TypeSript" class="headerlink" title="TypeSript"></a>TypeSript</h3><p>규모가 많은 곳에서 타입이 없다면 힘들어집니다. </p>
+<h3 id="RxJS"><a href="#RxJS" class="headerlink" title="RxJS"></a>RxJS</h3><p><strong>웹 소캣 재연결 상황</strong></p>
+<ol>
+<li>웹소켓이 끊어지면 재연결 </li>
+<li>N번째 재연결은  N*5초 뒤 연결 </li>
+<li>10초 뒤 재연결 </li>
+</ol>
+<ul>
+<li>슬랙이 이 방식 사용 </li>
+</ul>
+<p>단순 웹 소켓 재연결인데 코드의 파편ㄴ화가 느껴짐 -&gt; 데이커의 흐흠을 한곳에서 조작할 수 있음.<br>코드 가독성이 좋다. </p>
+<p><strong>사용해야되는 이유</strong><br>코드가 복잡성이 커지며 앵귤러가 사용을 권장 한다. </p>
+<p>비동기 스트림의 loadash </p>
+<h3 id="DIE"><a href="#DIE" class="headerlink" title="DIE"></a>DIE</h3><p>ex)<br>기능과 디자인은 같은 플랫폼만 다름<br>-&gt; 빌드 방법이 다름<br>-&gt; 친구기믄에 엔드포인트가 다름</p>
+<p>멀티 플랫폼에 좋음…. </p>
+<h1 id="UX빼면-서체-프론트엔드-한재엽"><a href="#UX빼면-서체-프론트엔드-한재엽" class="headerlink" title="UX빼면 서체 프론트엔드(한재엽)"></a>UX빼면 서체 프론트엔드(한재엽)</h1><h3 id="JAM"><a href="#JAM" class="headerlink" title="JAM"></a>JAM</h3><p>JaveScript<br>APIs<br>Markup </p>
+<p>정보량 과다<br>작은 모바일 화면<br>Rich 클라이언트 </p>
+<p><strong>프론트의 본질은 UX이다</strong><br>프론트엔드개발자라면 UX을 잘 이해야되자 않을까??? </p>
+<p>UX Engineeirng </p>
+<ul>
+<li>성능 최적화<ul>
+<li>초기 로딩 최적화 </li>
+<li>빠르다는 느낌을 전달 </li>
+<li>부드러운 애니메이션  </li>
+</ul>
+</li>
+<li>예상 가능한 동작 <ul>
+<li>스크롤 복원(봤던 거 보여주기)<br>  동적으로 된 부분을 어떻게 복원을 해줄것인가??<br>  스토리지에 위치를 저장 ㄹ</li>
+<li>딤드 영역 닫힘 </li>
+<li>손에 쉽게 등어오는 인터렉션 영역 </li>
+<li>예상 가능한 인터랙셩 </li>
+</ul>
+</li>
+<li>SEO/SMO(소셜메모)<ul>
+<li>검색엔진 최적화 </li>
+<li>소셩 미디어 공유 최적화</li>
+<li>어디까지 공유가 가능해야 하는가? </li>
+</ul>
+</li>
+<li>측정과 개선<ul>
+<li>사용자는 어떨게 우리 서비스를 사용하는가 (트래킹)</li>
+<li>상황에 따라 그 비율은 어떨게 되는가 </li>
+<li>이탐률 </li>
+</ul>
+</li>
+</ul>
+<h3 id="상태-저장하는-방법"><a href="#상태-저장하는-방법" class="headerlink" title="상태 저장하는 방법"></a>상태 저장하는 방법</h3><p>세션 스토리지에 저장<br>URL에 상태 저장 </p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-06-22</span><i class="fa fa-tag"></i><a class="tag" href="/tags/GDG/" title="GDG">GDG </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,https://kimseulbi.github.io/2019/06/22/GDD /,RAI TIL,FRONT ENDGAME,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2019/06/08/ReactNext실습/" title="ReactNext 실습">Próximo post</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
